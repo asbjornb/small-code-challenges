@@ -1,9 +1,15 @@
-﻿namespace project_euler.Problems.Problem0001
+﻿namespace project_euler.Problems.Problem0002
 {
-    //https://projecteuler.net/problem=1
-    internal static class Problem0002a
+    internal class Problem0002a : BaseProblem, IProblem
     {
-        public static int SumEvenFibonnaciNumbersUnder(int limit)
+        public string Description => "Simple brute force solution";
+
+        public string Solve()
+        {
+            return SumEvenFibonnaciNumbersUnder(4000000).ToString();
+        }
+
+        private static int SumEvenFibonnaciNumbersUnder(int limit)
         {
             int sum = 0;
             int num = 1;

@@ -1,9 +1,15 @@
 ﻿namespace project_euler.Problems.Problem0001
 {
-    //https://projecteuler.net/problem=1
-    internal static class Problem0001a
+    internal class Problem0001a : BaseProblem, IProblem
     {
-        public static int SumMultiplesUnder(List<int> divisors, int limit)
+        public string Description => "Simple brute force solution";
+
+        public string Solve()
+        {
+            return SumMultiplesUnder(new List<int>() { 3, 5 }, 1000).ToString();
+        }
+
+        private static int SumMultiplesUnder(List<int> divisors, int limit)
         {
             int sum = 0;
             for (int i = 0; i < limit; i++)
