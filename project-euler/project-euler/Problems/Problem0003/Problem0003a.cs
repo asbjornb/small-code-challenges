@@ -24,7 +24,6 @@
                 largestFactor = next.Value;
                 rest = number / largestFactor;
             }
-
         }
 
         private static int? FindSmallestFactor(long number, int startFrom)

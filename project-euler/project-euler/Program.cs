@@ -9,7 +9,7 @@ using project_euler;
 using System.Diagnostics;
 
 var solvers = Resolver.GetAllSolvers();
-Stopwatch watch; ;
+Stopwatch watch;
 foreach (var solver in solvers)
 {
     Console.WriteLine($"Solving {solver.Name}");
