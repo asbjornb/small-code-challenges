@@ -8,6 +8,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Problem0128\HexRingTests.cs" />
+    <Compile Remove="Problem0128\HexTests.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Problem0128\HexRingTests.cs" />
+    <None Include="Problem0128\HexTests.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoFixture" Version="4.17.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
     <PackageReference Include="NUnit" Version="3.13.2" />

@@ -16,10 +16,22 @@
     <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Problems\Problem0128\Hex.cs" />
+    <Compile Remove="Problems\Problem0128\HexRing.cs" />
+    <Compile Remove="Problems\Problem0128\Problem0128a.cs" />
+  </ItemGroup>
+
 	<ItemGroup>
 		<AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
 			<_Parameter1>project-euler.Tests</_Parameter1>
 		</AssemblyAttribute>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Include="Problems\Problem0128\Hex.cs" />
+	  <None Include="Problems\Problem0128\HexRing.cs" />
+	  <None Include="Problems\Problem0128\Problem0128a.cs" />
 	</ItemGroup>
 
 </Project>

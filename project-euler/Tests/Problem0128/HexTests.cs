@@ -2,7 +2,7 @@
 using project_euler.Problems.Problem0128;
 using Shouldly;
 
-namespace Tests
+namespace Tests.Problem0128
 {
     [TestFixture]
     internal class HexTests
