@@ -4,25 +4,25 @@
     {
         private readonly List<int> knownPrimes = new();
 
-        public List<int> FindPrimeFactors(int num)
+        public PrimeFactorization FindPrimeFactors(int num)
         {
             var rest = num;
             var primes = GeneratePrimesBelow(num+1);
             int index = 0;
-            var primeFactors = new int[primes.Count];
+            var primeFactors = new PrimeFactorization();
             while(primes[index] <= rest)
             {
                 if (IsDivisible(rest, primes[index]))
                 {
                     rest /= primes[index];
-                    primeFactors[index]++;
+                    primeFactors.AddFactor(primes[index]);
                 }
                 else
                 {
                     index++;
                 }
             }
-            return primeFactors.ToList();
+            return primeFactors;
         }
 
         public List<int> GeneratePrimesBelow(int num)

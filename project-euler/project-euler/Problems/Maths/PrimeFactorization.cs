@@ -59,11 +59,9 @@
         private static int Pow(int baseNum, int exponent)
         {
             var result = baseNum;
-            int i = 1;
-            while (i<exponent)
+            for (int i = 1; i < exponent; i++)
             {
                 result *= baseNum;
-                i++;
             }
             return result;
         }

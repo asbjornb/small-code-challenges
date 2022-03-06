@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using project_euler.Maths;
 using Shouldly;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Tests.Maths
@@ -34,18 +35,23 @@ namespace Tests.Maths
         }
 
         [Test]
-        [TestCase(2, new int[] { 1 })]
-        [TestCase(3, new int[] { 0, 1 })]
-        [TestCase(4, new int[] { 2, 0 })]
-        [TestCase(12, new int[] { 2, 1, 0, 0, 0 })]
-        [TestCase(15, new int[] { 0, 1, 1, 0, 0, 0 })]
-        public void ShouldFindPrimeFactorsForExamples(int input, int[] expectedResult)
+        [TestCaseSource(nameof(TestProductCases))]
+        public void ShouldFindPrimeFactorsForExamples(int input, List<PrimeFactor> expectedResult)
         {
             var sut = new Primes();
 
-            var result = sut.FindPrimeFactors(input);
+            var result = sut.FindPrimeFactors(input).ToList();
 
             result.ShouldBe(expectedResult.ToList());
         }
+
+        static readonly object[] TestProductCases =
+        {
+            new object[] { 2, new List<PrimeFactor>() { new PrimeFactor(2,1) } },
+            new object[] { 3, new List<PrimeFactor>() { new PrimeFactor(3,1) } },
+            new object[] { 4, new List<PrimeFactor>() { new PrimeFactor(2,2) } },
+            new object[] { 12, new List<PrimeFactor>() { new PrimeFactor(2,2), new PrimeFactor(3,1) } },
+            new object[] { 15, new List<PrimeFactor>() { new PrimeFactor(3,1), new PrimeFactor(5,1) } }
+        };
     }
 }
