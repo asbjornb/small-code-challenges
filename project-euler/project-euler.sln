@@ -5,7 +5,7 @@ VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "project-euler", "project-euler\project-euler.csproj", "{34D3739B-20DA-4698-B265-A09EBF19F176}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{FFE50131-04D5-4AB2-BDA4-A36583D1D039}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "project-euler.Tests", "Tests\project-euler.Tests.csproj", "{FFE50131-04D5-4AB2-BDA4-A36583D1D039}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
