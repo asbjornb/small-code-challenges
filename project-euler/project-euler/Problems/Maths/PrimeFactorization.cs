@@ -30,6 +30,31 @@
             }
         }
 
+        public void AddFactor(PrimeFactor factor)
+        {
+            if (primeFactors.ContainsKey(factor.Prime))
+            {
+                primeFactors[factor.Prime] +=factor.Exponent;
+            }
+            else
+            {
+                primeFactors.Add(factor.Prime, factor.Exponent);
+            }
+        }
+
+        //Should this be public here or live somewhere else?
+        public void IncreaseIfLarger(PrimeFactor factor)
+        {
+            if (!primeFactors.ContainsKey(factor.Prime))
+            {
+                primeFactors.Add(factor.Prime, factor.Exponent);
+            }
+            else
+            {
+                primeFactors[factor.Prime] = Math.Max(factor.Exponent, primeFactors[factor.Prime]);
+            }
+        }
+
         public Dictionary<int, int> ToDict()
         {
             return new Dictionary<int, int>(primeFactors);
@@ -46,9 +71,9 @@
             return primeFactors.Count == otherDict.Count && !primeFactors.Except(otherDict).Any();
         }
 
-        public int Product()
+        public long Product()
         {
-            var product = 1;
+            long product = 1L;
             foreach(var (prime,exponent) in primeFactors)
             {
                 product *= Pow(prime,exponent);
