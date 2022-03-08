@@ -14,13 +14,13 @@ namespace project_euler.Problems.Problem007
 
         private static long FindPrimeNumberN(int n)
         {
-            var primeCalc = new ListOfPrimes();
+            var primeCalc = ListOfPrimes.Construct();
             int i = n*10;
-            var  primes = primeCalc.GeneratePrimesBelow(i);
+            var  primes = primeCalc.GetPrimesBelow(i);
             while (primes.Count < n)
             {
                 i*=10;
-                primes = primeCalc.GeneratePrimesBelow(i);
+                primes = primeCalc.GetPrimesBelow(i);
             }
             return primes[n-1];
         }

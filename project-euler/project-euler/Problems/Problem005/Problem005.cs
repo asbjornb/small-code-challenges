@@ -14,13 +14,13 @@ namespace project_euler.Problems.Problem005
 
         private static long FindSmallestMultiple(int input)
         {
-            var primes = new ListOfPrimes();
-            var _ = primes.GeneratePrimesBelow(input+1);
+            var primes = ListOfPrimes.Construct();
+            var _ = primes.GetPrimesBelow(input+1);
             var smallestMultiple = new PrimeFactorization();
-            for (int i = 1; i <= input; i++)
+            for (int i = 2; i <= input; i++)
             {
-                var primeFactors = primes.FindPrimeFactors(i);
-                smallestMultiple = Calculator.SmallestCommonMultiple(smallestMultiple, primeFactors);
+                var primeFactors = PrimesCalculator.FindPrimeFactors(i);
+                smallestMultiple = NumberTheoryCalculator.SmallestCommonMultiple(smallestMultiple, primeFactors);
             }
             return smallestMultiple.Product();
         }

@@ -1,8 +1,7 @@
 ﻿using NUnit.Framework;
 using project_euler;
-using System.Linq;
 using Shouldly;
-using System.Diagnostics;
+using System.Linq;
 
 namespace Tests
 {

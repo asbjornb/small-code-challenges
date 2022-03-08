@@ -2,7 +2,7 @@
 
 namespace project_euler.Maths.NumberTheory
 {
-    internal static class Calculator
+    internal static class NumberTheoryCalculator
     {
         public static PrimeFactorization SmallestCommonMultiple(PrimeFactorization p1, PrimeFactorization p2)
         {
@@ -12,6 +12,11 @@ namespace project_euler.Maths.NumberTheory
             firstPairs.ForEach(x => result.IncreaseIfLarger(x));
             secondPairs.ForEach(x => result.IncreaseIfLarger(x));
             return result;
+        }
+
+        public static bool IsDivisible(int num, int divisor)
+        {
+            return num % divisor == 0;
         }
     }
 }

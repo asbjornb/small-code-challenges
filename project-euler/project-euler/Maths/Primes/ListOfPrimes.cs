@@ -1,32 +1,23 @@
 ﻿namespace project_euler.Maths.Primes
 {
-    internal class ListOfPrimes
+    internal sealed class ListOfPrimes
     {
+        private static ListOfPrimes? instance;
         private List<int> knownPrimes = new();
 
-        public PrimeFactorization FindPrimeFactors(int num)
+        private ListOfPrimes() { }
+
+        internal static ListOfPrimes Construct()
         {
-            var rest = num;
-            var primes = GeneratePrimesBelow(num+1);
-            int index = 0;
-            var primeFactors = new PrimeFactorization();
-            while(primes[index] <= rest)
-            {
-                if (IsDivisible(rest, primes[index]))
-                {
-                    rest /= primes[index];
-                    primeFactors.AddFactor(primes[index]);
-                }
-                else
-                {
-                    index++;
-                }
-            }
-            return primeFactors;
+            return instance ??= new ListOfPrimes();
         }
 
-        public List<int> GeneratePrimesBelow(int num)
+        public List<int> GetPrimesBelow(int num)
         {
+            if (knownPrimes.LastOrDefault() >= num)
+            {
+                return knownPrimes.Where(x => x < num).ToList();
+            }
             List<int> primes = new(knownPrimes);
             var startAt = 2;
             if (knownPrimes.Count > 0)
