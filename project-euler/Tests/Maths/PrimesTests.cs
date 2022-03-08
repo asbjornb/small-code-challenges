@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using project_euler.Maths;
+using project_euler.Maths.Primes;
 using Shouldly;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,7 @@ namespace Tests.Maths
         [TestCase(20, new int[] { 2, 3, 5, 7, 11, 13, 17, 19 })]
         public void ShouldGeneratePrimesBelowForExamples(int input, int[] expectedResult)
         {
-            var sut = new Primes();
+            var sut = new ListOfPrimes();
 
             var primes = sut.GeneratePrimesBelow(input);
 
@@ -26,7 +27,7 @@ namespace Tests.Maths
         [Test]
         public void ShouldGeneratePrimesBelow20WhenCalledTwice()
         {
-            var sut = new Primes();
+            var sut = new ListOfPrimes();
 
             var _ = sut.GeneratePrimesBelow(10);
             var primes = sut.GeneratePrimesBelow(20);
@@ -38,7 +39,7 @@ namespace Tests.Maths
         [TestCaseSource(nameof(TestProductCases))]
         public void ShouldFindPrimeFactorsForExamples(int input, List<PrimeFactor> expectedResult)
         {
-            var sut = new Primes();
+            var sut = new ListOfPrimes();
 
             var result = sut.FindPrimeFactors(input).ToList();
 

@@ -1,6 +1,6 @@
-﻿namespace project_euler.Maths
+﻿namespace project_euler.Maths.Primes
 {
-    internal class Primes
+    internal class ListOfPrimes
     {
         private List<int> knownPrimes = new();
 
@@ -43,16 +43,6 @@
             }
             knownPrimes = primes; //Should only add new. In general linq with Take() and something to calculate next on request with yield return?
             return primes;
-        }
-
-        public static PrimeFactorization SmallestCommonMultiple(PrimeFactorization p1, PrimeFactorization p2)
-        {
-            var firstPairs = p1.ToList();
-            var secondPairs = p2.ToList();
-            var result = new PrimeFactorization();
-            firstPairs.ForEach(x => result.IncreaseIfLarger(x));
-            secondPairs.ForEach(x => result.IncreaseIfLarger(x));
-            return result;
         }
 
         private static bool IsDivisible(int num, int divisor)

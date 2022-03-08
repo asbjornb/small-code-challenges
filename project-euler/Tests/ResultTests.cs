@@ -28,8 +28,7 @@ namespace Tests
         [Test]
         public void TestTime()
         {
-            var solvers = Resolver.GetAllSolvers();
-            foreach (var solver in solvers)
+            foreach (var solver in Resolver.GetAllSolvers())
             {
                 Should.CompleteIn(() => solver.Solve(), System.TimeSpan.FromSeconds(5), $"{solver.Name} took longer than expected");
             }

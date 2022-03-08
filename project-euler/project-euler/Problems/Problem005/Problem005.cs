@@ -1,4 +1,5 @@
-﻿using project_euler.Maths;
+﻿using project_euler.Maths.NumberTheory;
+using project_euler.Maths.Primes;
 
 namespace project_euler.Problems.Problem005
 {
@@ -13,13 +14,13 @@ namespace project_euler.Problems.Problem005
 
         private static long FindSmallestMultiple(int input)
         {
-            var primes = new Primes();
+            var primes = new ListOfPrimes();
             var _ = primes.GeneratePrimesBelow(input+1);
             var smallestMultiple = new PrimeFactorization();
             for (int i = 1; i <= input; i++)
             {
                 var primeFactors = primes.FindPrimeFactors(i);
-                smallestMultiple = Primes.SmallestCommonMultiple(smallestMultiple, primeFactors);
+                smallestMultiple = Calculator.SmallestCommonMultiple(smallestMultiple, primeFactors);
             }
             return smallestMultiple.Product();
         }

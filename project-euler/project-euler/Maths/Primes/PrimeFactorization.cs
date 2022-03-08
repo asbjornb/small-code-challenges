@@ -1,4 +1,4 @@
-﻿namespace project_euler.Maths
+﻿namespace project_euler.Maths.Primes
 {
     internal class PrimeFactorization
     {
