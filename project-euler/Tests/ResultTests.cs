@@ -2,6 +2,7 @@
 using project_euler;
 using System.Linq;
 using Shouldly;
+using System.Diagnostics;
 
 namespace Tests
 {
@@ -22,6 +23,16 @@ namespace Tests
             var result = solvers.First(x => x.Name == "Problem" + problem).Solve();
 
             result.ShouldBe(expectedResult);
+        }
+
+        [Test]
+        public void TestTime()
+        {
+            var solvers = Resolver.GetAllSolvers();
+            foreach (var solver in solvers)
+            {
+                Should.CompleteIn(() => solver.Solve(), System.TimeSpan.FromSeconds(5), $"{solver.Name} took longer than expected");
+            }
         }
     }
 }
