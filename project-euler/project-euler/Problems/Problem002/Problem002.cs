@@ -1,6 +1,6 @@
-﻿namespace project_euler.Problems.Problem0002
+﻿namespace project_euler.Problems.Problem002
 {
-    internal class Problem0002a : BaseProblem, IProblem
+    internal class Problem002 : BaseProblem, IProblem
     {
         public string Description => "Simple brute force solution";
 
@@ -12,18 +12,22 @@
         private static int SumEvenFibonnaciNumbersUnder(int limit)
         {
             int sum = 0;
-            int num = 1;
+
+            int current = 1;
+            int last = 1;
             while(true)
             {
-                if(num>limit)
+                if(current>=limit)
                 {
                     return sum;
                 }
-                if(IsDivisible(num, 2))
+                if(IsDivisible(current, 2))
                 {
-                    sum += num;
+                    sum += current;
                 }
-                num += num;
+                var temp = last;
+                last = current;
+                current += temp;
             }
         }
 

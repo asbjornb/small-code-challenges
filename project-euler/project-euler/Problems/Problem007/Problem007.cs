@@ -1,8 +1,8 @@
 ﻿using project_euler.Maths;
 
-namespace project_euler.Problems.Problem0005
+namespace project_euler.Problems.Problem007
 {
-    internal class Problem0007a : BaseProblem, IProblem
+    internal class Problem007 : BaseProblem, IProblem
     {
         public string Description => "Simple brute force solution";
 

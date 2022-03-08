@@ -1,6 +1,6 @@
-﻿namespace project_euler.Problems.Problem0001
+﻿namespace project_euler.Problems.Problem001
 {
-    internal class Problem0001a : BaseProblem, IProblem
+    internal class Problem001 : BaseProblem, IProblem
     {
         public string Description => "Simple brute force solution";
 
