@@ -17,6 +17,7 @@ namespace Tests
         [TestCase("006", "25164150")]
         [TestCase("007", "104743")]
         [TestCase("008", "23514624000")]
+        [TestCase("009", "31875000")]
         public void TestSolvers(string problem, string expectedResult, int secondsAllowed = 2)
         {
             var solver = Resolver.GetAllSolvers().First(x => x.Name == "Problem" + problem);
