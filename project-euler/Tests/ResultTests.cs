@@ -16,21 +16,14 @@ namespace Tests
         [TestCase("005", "232792560")]
         [TestCase("006", "25164150")]
         [TestCase("007", "104743")]
-        public void TestSolvers(string problem, string expectedResult)
+        public void TestSolvers(string problem, string expectedResult, int secondsAllowed=2)
         {
-            var solvers = Resolver.GetAllSolvers();
-            var result = solvers.First(x => x.Name == "Problem" + problem).Solve();
+            var solver = Resolver.GetAllSolvers().First(x => x.Name == "Problem" + problem);
+            string result="";
+
+            Should.CompleteIn(() => result=solver.Solve(), System.TimeSpan.FromSeconds(secondsAllowed), $"{solver.Name} took longer than expected");
 
             result.ShouldBe(expectedResult);
-        }
-
-        [Test]
-        public void TestTime()
-        {
-            foreach (var solver in Resolver.GetAllSolvers())
-            {
-                Should.CompleteIn(() => solver.Solve(), System.TimeSpan.FromSeconds(5), $"{solver.Name} took longer than expected");
-            }
         }
     }
 }
