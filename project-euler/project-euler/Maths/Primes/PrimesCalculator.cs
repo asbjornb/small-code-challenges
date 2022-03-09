@@ -1,4 +1,5 @@
 ﻿using project_euler.Maths.NumberTheory;
+using project_euler.Maths.Primes.Generation;
 
 namespace project_euler.Maths.Primes
 {

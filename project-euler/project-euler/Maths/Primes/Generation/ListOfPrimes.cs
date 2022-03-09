@@ -1,4 +1,4 @@
-﻿namespace project_euler.Maths.Primes
+﻿namespace project_euler.Maths.Primes.Generation
 {
     internal sealed class ListOfPrimes
     {
@@ -18,7 +18,7 @@
             {
                 return knownPrimes.Where(x => x < num).ToList();
             }
-            knownPrimes = PrimeBuilder.ArrayBuildPrimesBelow(num).ToList();
+            knownPrimes = PrimeBuilder.BuildPrimesBelow(num).ToList();
             return knownPrimes;
         }
     }

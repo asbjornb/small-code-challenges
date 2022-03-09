@@ -1,8 +1,8 @@
-﻿namespace project_euler.Maths.Primes
+﻿namespace project_euler.Maths.Primes.Generation
 {
     internal static class PrimeBuilder
     {
-        internal static IEnumerable<int> ArrayBuildPrimesBelow(int num)
+        public static IEnumerable<int> BuildPrimesBelow(int num)
         {
             var composites = CompositesBelow(num);
             var primesWithIndex = composites.Select((isNotPrime, index) => (isPrime: !isNotPrime, number: index));

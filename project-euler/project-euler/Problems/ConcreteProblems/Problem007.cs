@@ -1,4 +1,4 @@
-﻿using project_euler.Maths.Primes;
+﻿using project_euler.Maths.Primes.Generation;
 
 namespace project_euler.Problems.ConcreteProblems
 {

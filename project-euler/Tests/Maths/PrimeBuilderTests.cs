@@ -1,5 +1,5 @@
 ﻿using NUnit.Framework;
-using project_euler.Maths.Primes;
+using project_euler.Maths.Primes.Generation;
 using Shouldly;
 using System;
 namespace Tests.Maths
@@ -12,7 +12,7 @@ namespace Tests.Maths
         [TestCase(10000000, 2)]
         public void ShouldGeneratePrimesFast(int limit, int allowedSeconds)
         {
-            Should.CompleteIn(() => PrimeBuilder.ArrayBuildPrimesBelow(limit), TimeSpan.FromSeconds(allowedSeconds), "PrimesBuilder too slow");
+            Should.CompleteIn(() => PrimeBuilder.BuildPrimesBelow(limit), TimeSpan.FromSeconds(allowedSeconds), "PrimesBuilder too slow");
         }
     }
 }
