@@ -5,8 +5,6 @@ namespace project_euler.Problems.Problem005
 {
     internal class Problem005 : BaseProblem, IProblem
     {
-        public string Description => "Simple brute force solution";
-
         public string Solve()
         {
             return FindSmallestMultiple(20).ToString();

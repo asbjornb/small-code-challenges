@@ -2,8 +2,6 @@
 {
     internal class Problem004 : BaseProblem, IProblem
     {
-        public string Description => "Simple brute force solution";
-
         public string Solve()
         {
             return FindLargestPalindrome(10000).ToString();

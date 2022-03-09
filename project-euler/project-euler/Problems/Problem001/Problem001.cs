@@ -2,8 +2,6 @@
 {
     internal class Problem001 : BaseProblem, IProblem
     {
-        public string Description => "Simple brute force solution";
-
         public string Solve()
         {
             return SumMultiplesUnder(new List<int>() { 3, 5 }, 1000).ToString();

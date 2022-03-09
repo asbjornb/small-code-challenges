@@ -2,8 +2,6 @@
 {
     internal class Problem009 : BaseProblem, IProblem
     {
-        public string Description => "Simple brute force solution";
-
         public string Solve()
         {
             return FindTriplets().ToString();
@@ -16,7 +14,7 @@
                 for (int b = 0; b < c; b++)
                 {
                     var a = 1000 - b - c;
-                    if (a * a + b * b == c * c)
+                    if ((a * a) + (b * b) == c * c)
                     {
                         return a*b*c;
                     }

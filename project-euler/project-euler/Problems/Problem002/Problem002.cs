@@ -2,8 +2,6 @@
 {
     internal class Problem002 : BaseProblem, IProblem
     {
-        public string Description => "Simple brute force solution";
-
         public string Solve()
         {
             return SumEvenFibonnaciNumbersUnder(4000000).ToString();

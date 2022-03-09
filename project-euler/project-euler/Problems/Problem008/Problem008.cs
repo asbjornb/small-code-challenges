@@ -2,8 +2,6 @@
 {
     internal class Problem008 : BaseProblem, IProblem
     {
-        public string Description => "Simple brute force solution";
-
         public string Solve()
         {
             return FindLargestStreak(input, 13).ToString();

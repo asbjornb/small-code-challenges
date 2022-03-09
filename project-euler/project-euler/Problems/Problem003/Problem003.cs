@@ -2,8 +2,6 @@
 {
     internal class Problem003 : BaseProblem, IProblem
     {
-        public string Description => "Simple brute force solution";
-
         public string Solve()
         {
             var result = FindLargestFactor(600851475143).ToString();

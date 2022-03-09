@@ -2,8 +2,6 @@
 {
     internal class Problem006 : BaseProblem, IProblem
     {
-        public string Description => "Simple brute force solution";
-
         public string Solve()
         {
             return FindSumOfSquareDifference(100).ToString();

@@ -4,8 +4,6 @@ namespace project_euler.Problems.Problem007
 {
     internal class Problem007 : BaseProblem, IProblem
     {
-        public string Description => "Simple brute force solution";
-
         public string Solve()
         {
             return FindPrimeNumberN(10001).ToString();
