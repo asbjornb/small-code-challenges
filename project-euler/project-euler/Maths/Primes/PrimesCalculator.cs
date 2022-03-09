@@ -12,7 +12,7 @@ namespace project_euler.Maths.Primes
             var rest = num;
             int index = 0;
             var primeFactors = new PrimeFactorization();
-            while(primes[index] <= rest)
+            while (primes[index] <= rest)
             {
                 if (NumberTheoryCalculator.IsDivisible(rest, primes[index]))
                 {

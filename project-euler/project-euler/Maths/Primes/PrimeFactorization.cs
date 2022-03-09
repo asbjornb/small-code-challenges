@@ -2,7 +2,7 @@
 {
     internal class PrimeFactorization
     {
-        private readonly Dictionary<int,int> primeFactors;
+        private readonly Dictionary<int, int> primeFactors;
 
         public PrimeFactorization()
         {
@@ -34,7 +34,7 @@
         {
             if (primeFactors.ContainsKey(factor.Prime))
             {
-                primeFactors[factor.Prime] +=factor.Exponent;
+                primeFactors[factor.Prime] += factor.Exponent;
             }
             else
             {
@@ -74,9 +74,9 @@
         public long Product()
         {
             long product = 1L;
-            foreach(var (prime,exponent) in primeFactors)
+            foreach (var (prime, exponent) in primeFactors)
             {
-                product *= Pow(prime,exponent);
+                product *= Pow(prime, exponent);
             }
             return product;
         }

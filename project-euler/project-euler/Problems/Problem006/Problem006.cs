@@ -18,7 +18,7 @@
             }
             var sum = n * (n + 1) / 2;
             var squaredSum = sum * sum;
-            return squaredSum- sumOfSquares;
+            return squaredSum - sumOfSquares;
         }
     }
 }

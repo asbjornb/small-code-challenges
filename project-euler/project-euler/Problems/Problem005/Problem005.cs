@@ -15,7 +15,7 @@ namespace project_euler.Problems.Problem005
         private static long FindSmallestMultiple(int input)
         {
             var primes = ListOfPrimes.Construct();
-            var _ = primes.GetPrimesBelow(input+1);
+            var _ = primes.GetPrimesBelow(input + 1);
             var smallestMultiple = new PrimeFactorization();
             for (int i = 2; i <= input; i++)
             {

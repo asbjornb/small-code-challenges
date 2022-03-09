@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework;
-using project_euler.Maths;
 using project_euler.Maths.Primes;
 using Shouldly;
 using System.Collections.Generic;

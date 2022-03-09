@@ -15,13 +15,13 @@
 
             int current = 1;
             int last = 1;
-            while(true)
+            while (true)
             {
-                if(current>=limit)
+                if (current >= limit)
                 {
                     return sum;
                 }
-                if(IsDivisible(current, 2))
+                if (IsDivisible(current, 2))
                 {
                     sum += current;
                 }

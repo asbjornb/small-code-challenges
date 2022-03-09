@@ -16,12 +16,12 @@ namespace Tests
         [TestCase("005", "232792560")]
         [TestCase("006", "25164150")]
         [TestCase("007", "104743")]
-        public void TestSolvers(string problem, string expectedResult, int secondsAllowed=2)
+        public void TestSolvers(string problem, string expectedResult, int secondsAllowed = 2)
         {
             var solver = Resolver.GetAllSolvers().First(x => x.Name == "Problem" + problem);
-            string result="";
+            string result = "";
 
-            Should.CompleteIn(() => result=solver.Solve(), System.TimeSpan.FromSeconds(secondsAllowed), $"{solver.Name} took longer than expected");
+            Should.CompleteIn(() => result = solver.Solve(), System.TimeSpan.FromSeconds(secondsAllowed), $"{solver.Name} took longer than expected");
 
             result.ShouldBe(expectedResult);
         }

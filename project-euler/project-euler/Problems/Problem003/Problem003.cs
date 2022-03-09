@@ -12,7 +12,7 @@
 
         private static int? FindLargestFactor(long number)
         {
-            int largestFactor=0;
+            int largestFactor = 0;
             var rest = number;
             while (true)
             {
@@ -28,11 +28,11 @@
 
         private static int? FindSmallestFactor(long number, int startFrom)
         {
-            if(startFrom < 2)
+            if (startFrom < 2)
             {
                 startFrom = 2;
             }
-            for (int divisor = startFrom; divisor*divisor <= number; divisor++)
+            for (int divisor = startFrom; divisor * divisor <= number; divisor++)
             {
                 if (IsDivisible(number, divisor))
                 {

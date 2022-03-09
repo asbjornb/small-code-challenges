@@ -14,7 +14,7 @@
             int sum = 0;
             for (int i = 0; i < limit; i++)
             {
-                if(IsDivisible(i, divisors))
+                if (IsDivisible(i, divisors))
                 {
                     sum += i;
                 }
@@ -26,7 +26,7 @@
         {
             foreach (var divisor in divisors)
             {
-                if(IsDivisible(num, divisor))
+                if (IsDivisible(num, divisor))
                 {
                     return true;
                 }

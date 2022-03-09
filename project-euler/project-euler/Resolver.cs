@@ -11,8 +11,8 @@ namespace project_euler
             return AppDomain.CurrentDomain.GetAssemblies()
               .SelectMany(x => x.GetTypes())
               .Where(x => interfaceType.IsAssignableFrom(x) && !x.IsInterface && !x.IsAbstract)
-              .Select(x => (IProblem) Activator.CreateInstance(x)!)
-              .OrderBy(x=>x.Name);
+              .Select(x => (IProblem)Activator.CreateInstance(x)!)
+              .OrderBy(x => x.Name);
         }
     }
 }

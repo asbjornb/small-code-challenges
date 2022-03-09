@@ -27,13 +27,13 @@
 
         private static bool HasThreeDigitFactors(int num)
         {
-            for(int i = 100; i < 1000; i++)
+            for (int i = 100; i < 1000; i++)
             {
-                if(i*i>num)
+                if (i * i > num)
                 {
                     return false;
                 }
-                if(IsDivisible(num, i))
+                if (IsDivisible(num, i))
                 {
                     var otherFactor = num / i;
                     if (otherFactor > 99 && otherFactor < 1000)

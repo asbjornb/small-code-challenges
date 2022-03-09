@@ -1,5 +1,4 @@
-﻿using project_euler.Maths;
-using project_euler.Maths.Primes;
+﻿using project_euler.Maths.Primes;
 
 namespace project_euler.Problems.Problem007
 {
@@ -15,14 +14,14 @@ namespace project_euler.Problems.Problem007
         private static long FindPrimeNumberN(int n)
         {
             var primeCalc = ListOfPrimes.Construct();
-            int i = n*10;
-            var  primes = primeCalc.GetPrimesBelow(i);
+            int i = n * 10;
+            var primes = primeCalc.GetPrimesBelow(i);
             while (primes.Count < n)
             {
-                i*=10;
+                i *= 10;
                 primes = primeCalc.GetPrimesBelow(i);
             }
-            return primes[n-1];
+            return primes[n - 1];
         }
     }
 }

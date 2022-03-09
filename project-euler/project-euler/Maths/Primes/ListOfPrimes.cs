@@ -26,7 +26,7 @@
             }
             for (int i = startAt; i < num; i++)
             {
-                if(primes.Exists(x => IsDivisible(i,x)))
+                if (primes.Exists(x => IsDivisible(i, x)))
                 {
                     continue;
                 }
