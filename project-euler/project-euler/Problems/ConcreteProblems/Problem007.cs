@@ -1,6 +1,6 @@
 ﻿using project_euler.Maths.Primes;
 
-namespace project_euler.Problems.Problem007
+namespace project_euler.Problems.ConcreteProblems
 {
     internal class Problem007 : BaseProblem, IProblem
     {

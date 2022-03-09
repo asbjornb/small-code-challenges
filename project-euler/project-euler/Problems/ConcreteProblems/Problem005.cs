@@ -1,7 +1,7 @@
 ﻿using project_euler.Maths.NumberTheory;
 using project_euler.Maths.Primes;
 
-namespace project_euler.Problems.Problem005
+namespace project_euler.Problems.ConcreteProblems
 {
     internal class Problem005 : BaseProblem, IProblem
     {

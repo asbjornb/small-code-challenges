@@ -1,4 +1,4 @@
-﻿namespace project_euler.Problems.Problem003
+﻿namespace project_euler.Problems.ConcreteProblems
 {
     internal class Problem003 : BaseProblem, IProblem
     {
