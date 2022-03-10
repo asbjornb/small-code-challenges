@@ -16,7 +16,7 @@
                     var a = 1000 - b - c;
                     if ((a * a) + (b * b) == c * c)
                     {
-                        return a*b*c;
+                        return a * b * c;
                     }
                 }
             }

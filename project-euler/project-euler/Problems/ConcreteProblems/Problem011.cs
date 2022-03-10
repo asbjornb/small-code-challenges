@@ -20,7 +20,7 @@ namespace project_euler.Problems.ConcreteProblems
 
         private static int GetMaxSubProduct(int[] input, int length)
         {
-            if(input.Length < length)
+            if (input.Length < length)
             {
                 return -1;
             }

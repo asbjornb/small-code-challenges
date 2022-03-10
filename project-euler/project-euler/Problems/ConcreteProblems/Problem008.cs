@@ -9,12 +9,12 @@
 
         private static long FindLargestStreak(string inputNumAsString, int streakLength)
         {
-            var asArray = inputNumAsString.Select(n => n-'0').ToArray();
+            var asArray = inputNumAsString.Select(n => n - '0').ToArray();
             var max = 0L;
-            for(var i = 0; i+streakLength <= asArray.Length; i++)
+            for (var i = 0; i + streakLength <= asArray.Length; i++)
             {
-                var current = Product(asArray[i..(i+streakLength)]);
-                if(current > max)
+                var current = Product(asArray[i..(i + streakLength)]);
+                if (current > max)
                 {
                     max = current;
                 }
