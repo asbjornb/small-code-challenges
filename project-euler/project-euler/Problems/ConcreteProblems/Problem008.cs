@@ -11,14 +11,12 @@
         {
             var asArray = inputNumAsString.Select(n => n-'0').ToArray();
             var max = 0L;
-            int[] bestArray = new int[13];
             for(var i = 0; i+streakLength <= asArray.Length; i++)
             {
                 var current = Product(asArray[i..(i+streakLength)]);
                 if(current > max)
                 {
                     max = current;
-                    bestArray = asArray[i..(i + streakLength)];
                 }
             }
 
