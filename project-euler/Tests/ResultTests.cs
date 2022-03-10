@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using project_euler;
 using Shouldly;
+using System;
 using System.Linq;
 
 namespace Tests
@@ -19,12 +20,13 @@ namespace Tests
         [TestCase("008", "23514624000")]
         [TestCase("009", "31875000")]
         [TestCase("010", "142913828922")]
+        [TestCase("011", "70600674")]
         public void TestSolvers(string problem, string expectedResult, int secondsAllowed = 2)
         {
             var solver = Resolver.GetAllSolvers().First(x => x.Name == "Problem" + problem);
             string result = "";
 
-            Should.CompleteIn(() => result = solver.Solve(), System.TimeSpan.FromSeconds(secondsAllowed), $"{solver.Name} took longer than expected");
+            Should.CompleteIn(() => result = solver.Solve(), TimeSpan.FromSeconds(secondsAllowed), $"{solver.Name} took longer than expected");
 
             result.ShouldBe(expectedResult);
         }
