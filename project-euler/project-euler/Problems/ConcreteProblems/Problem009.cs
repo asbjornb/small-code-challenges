@@ -4,16 +4,23 @@
     {
         public string Solve()
         {
-            return FindTriplets().ToString();
+            return FindTripletsWithSum(1000).ToString();
         }
 
-        private static int FindTriplets()
+        private static int FindTripletsWithSum(int sum)
         {
-            for (int c = 1; c <= 1000; c++)
+            //sum=c+b+a<3c
+            var cLimitLow = sum / 3;
+            for (int c = cLimitLow; c < sum; c++)
             {
-                for (int b = 0; b < c; b++)
+                //a=sum-b-c>sum-2c
+                var aLimitLow = Math.Max(1, 1000 - (2 * c));
+                //a=sum-b-c<sum-a-c => 2a<sum-c => a<(sum-c)/2
+                var aLimitHigh = Math.Min(c, (1000 - c)/2);
+
+                for (int a = aLimitLow; a < aLimitHigh; a++)
                 {
-                    var a = 1000 - b - c;
+                    var b = sum - a - c;
                     if ((a * a) + (b * b) == c * c)
                     {
                         return a * b * c;
