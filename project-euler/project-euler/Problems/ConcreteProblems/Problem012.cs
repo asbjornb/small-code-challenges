@@ -11,21 +11,32 @@ namespace project_euler.Problems.ConcreteProblems
 
         private static int FindFirstTriangleWithDivisors(int divisors)
         {
-            var triangleNumber = 1;
-            var index = 1;
+            var index = 2;
             while (true)
             {
                 index++;
-                triangleNumber += index;
-                if (NumDivisors(triangleNumber) >= 500) { return triangleNumber; }
+                var triangleNumber = index*(index+1)/2;
+                var numDivisors = 0;
+                if (index % 2 == 0)
+                {
+                    var factors = PrimesCalculator.FindPrimeFactors(index/2);
+                    factors.Add(PrimesCalculator.FindPrimeFactors(index + 1));
+                    numDivisors = NumDivisors(factors);
+                }
+                else
+                {
+                    var factors = PrimesCalculator.FindPrimeFactors(index);
+                    factors.Add(PrimesCalculator.FindPrimeFactors((index + 1) / 2));
+                    numDivisors = NumDivisors(factors);
+                }
+                if (numDivisors >= 500) { return triangleNumber; }
             }
         }
 
-        private static int NumDivisors(int num)
+        private static int NumDivisors(PrimeFactorization primeFactors)
         {
-            var primeFactors = PrimesCalculator.FindPrimeFactors(num).ToList();
             var divisors = 1;
-            foreach (var factor in primeFactors)
+            foreach (var factor in primeFactors.ToList())
             {
                 divisors *= (factor.Exponent + 1);
             }
