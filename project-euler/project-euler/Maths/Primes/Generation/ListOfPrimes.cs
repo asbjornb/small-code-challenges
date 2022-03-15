@@ -3,7 +3,8 @@
     internal sealed class ListOfPrimes
     {
         private static ListOfPrimes? instance;
-        private List<int> knownPrimes = new();
+        private SortedSet<int> knownPrimes = new();
+        private int maxChecked;
 
         private ListOfPrimes() { }
 
@@ -12,13 +13,15 @@
             return instance ??= new ListOfPrimes();
         }
 
-        public List<int> GetPrimesBelow(int num)
+        public SortedSet<int> GetPrimesBelow(int num)
         {
-            if (knownPrimes?.LastOrDefault() >= num)
+            if (num <= 2) { return new(); }
+            if (maxChecked >= num)
             {
-                return knownPrimes.Where(x => x < num).ToList();
+                return knownPrimes.GetViewBetween(2, num-1);
             }
-            knownPrimes = PrimeBuilder.BuildPrimesBelow(num).ToList();
+            knownPrimes = new SortedSet<int>(PrimeBuilder.BuildPrimesBelow(num));
+            maxChecked = num;
             return knownPrimes;
         }
     }

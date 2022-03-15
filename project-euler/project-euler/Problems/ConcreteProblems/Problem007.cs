@@ -19,7 +19,7 @@ namespace project_euler.Problems.ConcreteProblems
                 i *= 10;
                 primes = primeCalc.GetPrimesBelow(i);
             }
-            return primes[n - 1];
+            return primes.ToList()[n-1];
         }
     }
 }

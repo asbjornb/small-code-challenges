@@ -19,7 +19,7 @@ namespace Tests.Maths
         {
             var sut = ListOfPrimes.Construct();
 
-            var primes = sut.GetPrimesBelow(input);
+            var primes = sut.GetPrimesBelow(input).ToList();
 
             primes.ShouldBe(expectedResult.ToList());
         }

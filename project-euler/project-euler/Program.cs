@@ -3,12 +3,15 @@ using project_euler;
 using System.Diagnostics;
 
 var solvers = Resolver.GetAllSolvers();
-Stopwatch watch;
+var solutionWatch = Stopwatch.StartNew();
+Stopwatch individualWatch;
 foreach (var solver in solvers)
 {
     Console.WriteLine($"Solving {solver.Name}");
-    watch = Stopwatch.StartNew();
+    individualWatch = Stopwatch.StartNew();
     Console.WriteLine(solver.Solve());
-    watch.Stop();
-    Console.WriteLine($"Solution took {watch.ElapsedMilliseconds} milliseconds");
+    solver.Solve();
+    Console.WriteLine($"Solution took {individualWatch.ElapsedMilliseconds} milliseconds");
 }
+solutionWatch.Stop();
+Console.WriteLine($"All solvers combined took {solutionWatch.ElapsedMilliseconds} milliseconds");
