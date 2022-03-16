@@ -71,12 +71,19 @@
             return primeFactors.Count == otherDict.Count && !primeFactors.Except(otherDict).Any();
         }
 
-        public void Add(PrimeFactorization other)
+        public PrimeFactorization Add(PrimeFactorization other)
         {
+            var result = Clone();
             foreach (var factor in other.ToList())
             {
-                AddFactor(factor);
+                result.AddFactor(factor);
             }
+            return result;
+        }
+
+        public PrimeFactorization Clone()
+        {
+            return new PrimeFactorization(ToList());
         }
 
         public long Product()

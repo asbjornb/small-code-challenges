@@ -1,4 +1,5 @@
 ﻿using project_euler.Maths.Primes;
+using project_euler.Util;
 
 namespace project_euler.Problems.ConcreteProblems
 {
@@ -11,6 +12,8 @@ namespace project_euler.Problems.ConcreteProblems
 
         private static int FindFirstTriangleWithDivisors(int divisors)
         {
+            var cache = new DictCacheWithFunct<int, PrimeFactorization>(x => PrimesCalculator.FindPrimeFactors(x));
+
             var index = 2;
             while (true)
             {
@@ -19,14 +22,14 @@ namespace project_euler.Problems.ConcreteProblems
                 var numDivisors = 0;
                 if (index % 2 == 0)
                 {
-                    var factors = PrimesCalculator.FindPrimeFactors(index/2);
-                    factors.Add(PrimesCalculator.FindPrimeFactors(index + 1));
+                    var factors = cache.Get(index/2);
+                    factors = factors.Add(cache.Get(index + 1));
                     numDivisors = NumDivisors(factors);
                 }
                 else
                 {
-                    var factors = PrimesCalculator.FindPrimeFactors(index);
-                    factors.Add(PrimesCalculator.FindPrimeFactors((index + 1) / 2));
+                    var factors = cache.Get(index);
+                    factors = factors.Add(cache.Get((index + 1) / 2));
                     numDivisors = NumDivisors(factors);
                 }
                 if (numDivisors >= 500) { return triangleNumber; }
