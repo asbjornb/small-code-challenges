@@ -14,14 +14,14 @@ namespace Tests.Utils
         public void ShouldOnlyInvokeFirstTime(int testValue)
         {
             var sut = new DictCache<int,int>();
-            
+
             var counter = 0;
-            Func<int,int> function = x => { counter++; return x; };
+            int function(int x) { counter++; return x; }
 
             var result = sut.Get(testValue, function);
             result.ShouldBe(testValue);
             counter.ShouldBe(1);
-            
+
             result = sut.Get(testValue, function);
             result.ShouldBe(testValue);
             counter.ShouldBe(1);
