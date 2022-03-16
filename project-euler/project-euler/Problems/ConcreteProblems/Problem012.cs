@@ -19,20 +19,10 @@ namespace project_euler.Problems.ConcreteProblems
             {
                 index++;
                 var triangleNumber = index*(index+1)/2;
-                var numDivisors = 0;
-                if (index % 2 == 0)
-                {
-                    var factors = cache.Get(index/2);
-                    factors = factors.Add(cache.Get(index + 1));
-                    numDivisors = NumDivisors(factors);
-                }
-                else
-                {
-                    var factors = cache.Get(index);
-                    factors = factors.Add(cache.Get((index + 1) / 2));
-                    numDivisors = NumDivisors(factors);
-                }
-                if (numDivisors >= 500) { return triangleNumber; }
+                var factors = cache.Get(index);
+                factors = factors.Add(cache.Get(index + 1));
+                factors.TryRemove(2);
+                if (NumDivisors(factors) >= divisors) { return triangleNumber; }
             }
         }
 

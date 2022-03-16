@@ -30,6 +30,20 @@
             }
         }
 
+        public bool TryRemove(int prime)
+        {
+            if (primeFactors.ContainsKey(prime))
+            {
+                if (primeFactors[prime] == 1)
+                {
+                    return primeFactors.Remove(prime);
+                }
+                primeFactors[prime]--;
+                return true;
+            }
+            return false;
+        }
+
         public void AddFactor(PrimeFactor factor)
         {
             if (primeFactors.ContainsKey(factor.Prime))
