@@ -2,43 +2,42 @@
 {
     internal class Problem014 : BaseProblem, IProblem
     {
+        private static readonly Dictionary<long, int> known = new() { [1]=1 };
+
         public string Solve()
         {
             return LongestCollatzBelow(1000000).ToString();
         }
 
+        //This version is actually slower than previous imperial version
+        //I think it's much nicer and more intuitive so keeping it for now
         private static long LongestCollatzBelow(long limit)
         {
-            Dictionary<long,long> known = new();
-            known[1] = 1;
-            var maxIterations = 0L;
-            var mostIterations = 0L;
-            
-            for(long i = 2; i < limit; i++)
+            var maxIterations = 0;
+            var result = 0;
+
+            for(int i = 2; i < limit; i++)
             {
-                var iterations = 0L;
-                var current = i;
-                while(true)
+                var iterations = GetIterations(i);
+                if (iterations > maxIterations)
                 {
-                    if (known.TryGetValue(current, out var knownIterations))
-                    {
-                        var iIterations = iterations + knownIterations;
-                        known[i] = iIterations;
-                        if (iIterations > maxIterations)
-                        {
-                            maxIterations = iIterations;
-                            mostIterations = i;
-                        }
-                        break;
-                    }
-                    else
-                    {
-                        iterations++;
-                        current = GetNextCollatz(current);
-                    }
+                    maxIterations = iterations;
+                    result = i;
                 }
             }
-            return mostIterations;
+            return result;
+        }
+
+        private static int GetIterations(long num)
+        {
+            if (known.TryGetValue(num, out var knownIterations))
+            {
+                return knownIterations;
+            }
+            else
+            {
+                return known[num] = 1 + GetIterations(GetNextCollatz(num));
+            }
         }
 
         private static long GetNextCollatz(long current)
