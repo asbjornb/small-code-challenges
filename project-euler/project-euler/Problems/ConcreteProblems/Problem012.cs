@@ -12,17 +12,20 @@ namespace project_euler.Problems.ConcreteProblems
 
         private static int FindFirstTriangleWithDivisors(int divisors)
         {
-            var cache = new DictCacheWithFunct<int, PrimeFactorization>(x => PrimesCalculator.FindPrimeFactors(x));
-
-            var index = 2;
+            var index = 3;
+            var primefactorization = PrimesCalculator.FindPrimeFactors(index); //Store factorization for reuse for next index
             while (true)
             {
+                var triangleNumber = index*(index-1)/2; //Eulers formula displaced by 1
+                var factorsNminusOne = primefactorization; //Store previous in temp variable
+                var factorsN = primefactorization = PrimesCalculator.FindPrimeFactors(index);
+                var totalFactors = factorsN.Add(factorsNminusOne);
+                totalFactors.TryRemove(2); //Now holds the factors of the trianglenumber
+                if (NumDivisors(totalFactors) >= divisors)
+                {
+                    return triangleNumber;
+                }
                 index++;
-                var triangleNumber = index*(index+1)/2;
-                var factors = cache.Get(index);
-                factors = factors.Add(cache.Get(index + 1));
-                factors.TryRemove(2);
-                if (NumDivisors(factors) >= divisors) { return triangleNumber; }
             }
         }
 
