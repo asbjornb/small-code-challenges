@@ -11,25 +11,19 @@
             if (num >= 21 && num <100)
             {
                 var tens = (num / 10)*10;
-                return LetterCounts[tens]+LetterCounts[num-tens];
+                return LetterCounts[tens]+LetterCounts[num % 10];
             }
             if (num >= 100 && num < 1000)
             {
-                var result = 0;
                 var hundreds = (num / 100);
-                if(num == hundreds * 100)
+                var rest = num % 100;
+                if (rest == 0)
                 {
                     return LetterCounts[hundreds] + "hundred".Length;
                 }
-                result += LetterCounts[hundreds] + "hundred".Length
-                    + 3;//'And'
-                var rest = num - hundreds * 100;
-                if (rest >= 1 && rest <= 20)
-                {
-                    return result + LetterCounts[rest];
-                }
-                var tens = (rest / 10) * 10;
-                return result + LetterCounts[tens] + LetterCounts[rest - tens];
+                return LetterCounts[hundreds] + "hundred".Length
+                    + "and".Length
+                    + Convert(rest);
             }
             if (num == 1000)
             {
