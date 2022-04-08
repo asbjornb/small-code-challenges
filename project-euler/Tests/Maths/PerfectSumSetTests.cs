@@ -22,7 +22,7 @@ namespace Tests.Maths
         [TestCase(new int[] { 20, 31, 37, 39, 40, 42, 45 }, false)]
         public void ShouldGenerateCorrectly(int[] candidateSet, bool expectedResult)
         {
-            var sut = PerfectSumSet.Create();
+            var sut = new PerfectSumSet();
             var result = candidateSet.All(x => sut.Add(x));
             
             result.ShouldBe(expectedResult);

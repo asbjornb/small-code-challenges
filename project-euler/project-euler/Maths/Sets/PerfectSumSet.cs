@@ -1,19 +1,14 @@
 ﻿namespace project_euler.Maths.Sets
 {
-    internal sealed class PerfectSumSet
+    internal class PerfectSumSet
     {
         private readonly SortedSet<int> set;
         private List<SortedSet<int>> subsets;
 
-        private PerfectSumSet()
+        public PerfectSumSet()
         {
             set = new SortedSet<int>();
             subsets = new List<SortedSet<int>>();
-        }
-
-        public static PerfectSumSet Create()
-        {
-            return new();
         }
 
         public bool Add(int i)
