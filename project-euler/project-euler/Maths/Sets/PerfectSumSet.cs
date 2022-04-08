@@ -3,12 +3,12 @@
     internal class PerfectSumSet
     {
         private readonly SortedSet<int> set;
-        private List<SortedSet<int>> subsets;
+        private List<ImmutableSortedSet<int>> subsets;
 
         public PerfectSumSet()
         {
             set = new SortedSet<int>();
-            subsets = new List<SortedSet<int>>();
+            subsets = new List<ImmutableSortedSet<int>>();
         }
 
         public bool Add(int i)
@@ -16,12 +16,12 @@
             if(set.Count == 0)
             {
                 set.Add(i);
-                subsets.Add(new SortedSet<int> { i });
+                subsets.Add(new ImmutableSortedSet<int>(i));
                 return true;
             }
-            var candidateSubsets = new List<SortedSet<int>>(subsets);
-            candidateSubsets.Add(new SortedSet<int> { i });
-            candidateSubsets.AddRange(subsets.Select(x => new SortedSet<int>(x) { i }));
+            var candidateSubsets = new List<ImmutableSortedSet<int>>(subsets);
+            candidateSubsets.Add(new ImmutableSortedSet<int>(i));
+            candidateSubsets.AddRange(subsets.Select(x => x.Add(i)));
             if (Validate(candidateSubsets))
             {
                 set.Add(i);
@@ -32,7 +32,7 @@
         }
 
         //Should use existing pairs to not re-validate
-        private static bool Validate(List<SortedSet<int>> candidateSubsets)
+        private static bool Validate(List<ImmutableSortedSet<int>> candidateSubsets)
         {
             var combinations = candidateSubsets.SelectMany(_=>candidateSubsets, (x,y)=>(x,y))
                 .Where(pair => pair.x!=pair.y);
