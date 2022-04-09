@@ -10,7 +10,6 @@ foreach (var solver in solvers)
     Console.WriteLine($"Solving {solver.Name}");
     individualWatch = Stopwatch.StartNew();
     Console.WriteLine(solver.Solve());
-    solver.Solve();
     Console.WriteLine($"Solution took {individualWatch.ElapsedMilliseconds} milliseconds");
 }
 solutionWatch.Stop();
