@@ -6,7 +6,7 @@ using System.Linq;
 namespace Tests.Maths
 {
     [TestFixture]
-    internal class PerfectSumSetTests
+    internal class SpecialSumSetTests
     {
         [Test]
         [TestCase(new int[] { }, true)]
@@ -22,7 +22,7 @@ namespace Tests.Maths
         [TestCase(new int[] { 20, 31, 37, 39, 40, 42, 45 }, false)]
         public void ShouldGenerateCorrectly(int[] candidateSet, bool expectedResult)
         {
-            var sut = new PerfectSumSet();
+            var sut = new SpecialSumSet();
             var result = candidateSet.All(x => sut.Add(x));
             
             result.ShouldBe(expectedResult);

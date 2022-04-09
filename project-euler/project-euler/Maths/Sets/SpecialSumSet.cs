@@ -1,11 +1,11 @@
 ﻿namespace project_euler.Maths.Sets
 {
-    internal class PerfectSumSet
+    internal class SpecialSumSet
     {
         private readonly SortedSet<int> set;
         private List<ImmutableSortedSet<int>> subsets;
 
-        public PerfectSumSet()
+        public SpecialSumSet()
         {
             set = new SortedSet<int>();
             subsets = new List<ImmutableSortedSet<int>>();
