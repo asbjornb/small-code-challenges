@@ -3,7 +3,7 @@
     internal class SpecialSumSet
     {
         private readonly SortedSet<int> set;
-        private List<ImmutableSortedSet<int>> subsets;
+        private readonly List<ImmutableSortedSet<int>> subsets;
 
         public SpecialSumSet()
         {
@@ -19,39 +19,39 @@
                 subsets.Add(new ImmutableSortedSet<int>(i));
                 return true;
             }
-            var candidateSubsets = new List<ImmutableSortedSet<int>>(subsets);
-            candidateSubsets.Add(new ImmutableSortedSet<int>(i));
-            candidateSubsets.AddRange(subsets.Select(x => x.Add(i)));
-            if (Validate(candidateSubsets))
+            var newSubsets = new List<ImmutableSortedSet<int>>(subsets.Select(x => x.Add(i)));
+            newSubsets.Add(new ImmutableSortedSet<int>(i));
+            if (Validate(newSubsets, subsets))
             {
                 set.Add(i);
-                subsets = candidateSubsets;
+                subsets.AddRange(newSubsets);
                 return true;
             }
             return false;
         }
 
         //Should use existing pairs to not re-validate
-        private static bool Validate(List<ImmutableSortedSet<int>> candidateSubsets)
+        private static bool Validate(List<ImmutableSortedSet<int>> newSubsets, List<ImmutableSortedSet<int>>  existingSubsets)
         {
-            var combinations = GetPairs(candidateSubsets);
-            //Also add compare - so new class. Need to filter combinations for B!=C.
+            var combinations = GetPairs(newSubsets,existingSubsets);
             if (combinations.Any(pair => pair.Item1.Sum() == pair.Item2.Sum())) {
                 return false;
             }
-            if (combinations.Any(pair => pair.Item1.Sum() >= pair.Item2.Sum() && pair.Item1.Count < pair.Item2.Count)) {
+            if (combinations.Any(pair => (pair.Item1.Sum() > pair.Item2.Sum() && pair.Item1.Count < pair.Item2.Count)
+                                        || (pair.Item1.Sum() < pair.Item2.Sum() && pair.Item1.Count > pair.Item2.Count))) {
                 return false;
             }
             return true;
         }
 
-        private static IEnumerable<PairOfSets> GetPairs(List<ImmutableSortedSet<int>> candidateSubsets)
+        //Get all distinct pairs with 1 element from each of two given lists
+        private static IEnumerable<PairOfSets> GetPairs(List<ImmutableSortedSet<int>> set1, List<ImmutableSortedSet<int>> set2)
         {
-            for (int i = 0; i < candidateSubsets.Count; i++)
+            foreach(var element1 in set1)
             {
-                for (int j = i+1; j < candidateSubsets.Count; j++)
+                foreach(var element2 in set2)
                 {
-                    yield return new PairOfSets(candidateSubsets[i], candidateSubsets[j]);
+                    yield return new PairOfSets(element1, element2);
                 }
             }
         }
