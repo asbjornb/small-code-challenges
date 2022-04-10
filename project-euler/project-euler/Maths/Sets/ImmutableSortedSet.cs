@@ -2,36 +2,39 @@
 
 namespace project_euler.Maths.Sets
 {
-    internal class ImmutableSortedSet<T> : IEquatable<ImmutableSortedSet<T>?>, IEnumerable<T> where T : struct
+    internal class ImmutableSortedSet : IEquatable<ImmutableSortedSet?>, IEnumerable<int>
     {
-        private readonly SortedSet<T> set;
+        protected readonly SortedSet<int> set;
+        public int Sum { get; }
 
-        public ImmutableSortedSet(IEnumerable<T> collection)
+        public ImmutableSortedSet(IEnumerable<int> collection)
         {
-            set = new SortedSet<T>(collection);
+            set = new SortedSet<int>(collection);
+            Sum = set.Sum();
         }
 
-        public ImmutableSortedSet(T element)
+        public ImmutableSortedSet(int element)
         {
-            set = new SortedSet<T>() { element };
+            set = new SortedSet<int>() { element };
+            Sum = element;
         }
 
-        public SortedSet<T> ToMutable()
+        public SortedSet<int> ToMutable()
         {
-            return new SortedSet<T>(set);
+            return new SortedSet<int>(set);
         }
 
-        public ImmutableSortedSet<T> Add(T element)
+        public ImmutableSortedSet Add(int element)
         {
-            return new ImmutableSortedSet<T>(new SortedSet<T>(set) { element });
+            return new ImmutableSortedSet(new SortedSet<int>(set) { element });
         }
 
         public override bool Equals(object? obj)
         {
-            return Equals(obj as ImmutableSortedSet<T>);
+            return Equals(obj as ImmutableSortedSet);
         }
 
-        public bool Equals(ImmutableSortedSet<T>? other)
+        public bool Equals(ImmutableSortedSet? other)
         {
             return other?.set.SequenceEqual(set) == true;
         }
@@ -46,7 +49,7 @@ namespace project_euler.Maths.Sets
             return hc;
         }
 
-        public IEnumerator<T> GetEnumerator()
+        public IEnumerator<int> GetEnumerator()
         {
             return set.GetEnumerator();
         }
@@ -58,12 +61,12 @@ namespace project_euler.Maths.Sets
 
         public int Count => set.Count;
 
-        public static bool operator ==(ImmutableSortedSet<T>? left, ImmutableSortedSet<T>? right)
+        public static bool operator ==(ImmutableSortedSet? left, ImmutableSortedSet? right)
         {
-            return EqualityComparer<ImmutableSortedSet<T>>.Default.Equals(left, right);
+            return EqualityComparer<ImmutableSortedSet>.Default.Equals(left, right);
         }
 
-        public static bool operator !=(ImmutableSortedSet<T>? left, ImmutableSortedSet<T>? right)
+        public static bool operator !=(ImmutableSortedSet? left, ImmutableSortedSet? right)
         {
             return !(left == right);
         }

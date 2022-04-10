@@ -9,13 +9,13 @@ namespace project_euler.Problems.ConcreteProblems
             return SumSpecialSumSets(input).ToString();
         }
 
-        private int SumSpecialSumSets(List<List<int>> input)
+        private static int SumSpecialSumSets(List<List<int>> input)
         {
             var sum = 0;
             var count = 0;
             foreach (var set in input)
             {
-                //Console.WriteLine($"Starting set with length {set.Count}, set number {count}");
+                Console.WriteLine($"Starting set with length {set.Count}, set number {count}");
                 var test = new SpecialSumSet();
                 if(set.All(x => test.Add(x)))
                 {
