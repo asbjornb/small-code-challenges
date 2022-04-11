@@ -11,6 +11,12 @@
             subsetSums = new HashSet<int>() { 0 };
         }
 
+        private SpecialSumSet(SpecialSumSet toClone)
+        {
+            set = new(toClone.set);
+            subsetSums = new(toClone.subsetSums);
+        }
+
         public bool Add(int i)
         {
             if (set.Count == 0)
@@ -47,6 +53,11 @@
             }
             set.Add(i);
             return true;
+        }
+
+        public SpecialSumSet Clone()
+        {
+            return new SpecialSumSet(this);
         }
     }
 }
