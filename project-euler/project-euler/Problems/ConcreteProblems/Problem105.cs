@@ -12,16 +12,13 @@ namespace project_euler.Problems.ConcreteProblems
         private static int SumSpecialSumSets(List<List<int>> input)
         {
             var sum = 0;
-            var count = 0;
             foreach (var set in input)
             {
-                Console.WriteLine($"Starting set with length {set.Count}, set number {count}");
-                var test = new SpecialSumSet();
-                if(set.All(x => test.Add(x)))
+                var candidate = new SpecialSumSet();
+                if(set.All(x => candidate.Add(x)))
                 {
                     sum += set.Sum();
                 }
-                count++;
             }
             return sum;
         }

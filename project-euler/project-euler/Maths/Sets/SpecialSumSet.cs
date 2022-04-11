@@ -3,12 +3,12 @@
     internal class SpecialSumSet
     {
         private readonly SortedSet<int> set;
-        private readonly List<ImmutableSortedSet> subsets;
+        private readonly HashSet<int> subsetSums;
 
         public SpecialSumSet()
         {
             set = new SortedSet<int>();
-            subsets = new List<ImmutableSortedSet>();
+            subsetSums = new HashSet<int>() { 0 };
         }
 
         public bool Add(int i)
@@ -16,55 +16,37 @@
             if (set.Count == 0)
             {
                 set.Add(i);
-                subsets.Add(new ImmutableSortedSet(i));
+                subsetSums.Add(i);
                 return true;
             }
-            var newSubsets = new List<ImmutableSortedSet>(subsets.Select(x => x.Add(i)));
-            newSubsets.Add(new ImmutableSortedSet(i));
-            if (Validate(newSubsets, subsets))
+            if(set.Count == 1)
             {
                 set.Add(i);
-                subsets.AddRange(newSubsets);
+                var currentSums = subsetSums.ToList();
+                currentSums.ForEach(x => subsetSums.Add(x + i));
                 return true;
             }
-            return false;
-        }
-
-        //Should use existing pairs to not re-validate
-        private static bool Validate(List<ImmutableSortedSet> newSubsets, List<ImmutableSortedSet>  existingSubsets)
-        {
-            var combinations = GetPairs(newSubsets,existingSubsets);
-            if (combinations.Any(pair => pair.Item1.Sum == pair.Item2.Sum)) {
-                return false;
-            }
-            if (combinations.Any(pair => (pair.Item1.Sum > pair.Item2.Sum && pair.Item1.Count < pair.Item2.Count)
-                                        || (pair.Item1.Sum < pair.Item2.Sum && pair.Item1.Count > pair.Item2.Count))) {
-                return false;
-            }
-            return true;
-        }
-
-        //Get all distinct pairs with 1 element from each of two given lists
-        private static IEnumerable<PairOfSets> GetPairs(List<ImmutableSortedSet> set1, List<ImmutableSortedSet> set2)
-        {
-            foreach(var element1 in set1)
+            var newSet = new SortedSet<int>(set) { i };
+            int half = newSet.Count / 2;
+            //If the subset of smallest half elements A and the subset of the largest half elements B satisfy Count(A)>Count(B) AND Sum(A)<=Sum(B)
+            //Then obviously return false. No other subsets can satisfy the above if smallest vs. largest doesn't.
+            if ((newSet.Count % 2 == 0 && newSet.Take(half).Sum() <= newSet.Skip(half + 1).Sum())
+                || (newSet.Count % 2 == 1 && newSet.Take(half + 1).Sum() < newSet.Skip(half + 1).Sum()))
             {
-                foreach(var element2 in set2)
+                return false;
+            }
+            //If any 2 distinct subsets A and B has Sum(A)==Sum(B) then removing common elements two disjoint subsets A' and B' has the same property
+            foreach (var sum in subsetSums.ToList())
+            {
+                var newSum = sum + i;
+                if (subsetSums.Contains(newSum))
                 {
-                    yield return new PairOfSets(element1, element2);
+                    return false;
                 }
+                subsetSums.Add(newSum);
             }
-        }
-
-        private class PairOfSets
-        {
-            public ImmutableSortedSet Item1{ get; }
-            public ImmutableSortedSet Item2 { get; }
-            public PairOfSets(ImmutableSortedSet item1, ImmutableSortedSet item2)
-            {
-                Item1 = item1;
-                Item2 = item2;
-            }
+            set.Add(i);
+            return true;
         }
     }
 }

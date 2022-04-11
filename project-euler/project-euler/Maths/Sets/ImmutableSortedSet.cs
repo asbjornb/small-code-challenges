@@ -6,6 +6,7 @@ namespace project_euler.Maths.Sets
     {
         protected readonly SortedSet<int> set;
         public int Sum { get; }
+        public int Count => set.Count;
 
         public ImmutableSortedSet(IEnumerable<int> collection)
         {
@@ -58,8 +59,6 @@ namespace project_euler.Maths.Sets
         {
             return set.GetEnumerator();
         }
-
-        public int Count => set.Count;
 
         public static bool operator ==(ImmutableSortedSet? left, ImmutableSortedSet? right)
         {
