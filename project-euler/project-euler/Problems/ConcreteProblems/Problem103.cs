@@ -28,6 +28,8 @@ namespace project_euler.Problems.ConcreteProblems
             //Conversely e7 is less than any 2 other elements so 4*e7<(e7)+(e5+e6)+(e3+e4+4)+(e1+e2+8)=S7+12<=255+12=267 so e7<=267/4=66
 
             //Lets find the set {e2,...,e7} which is again SSS:
+            var minExample = new List<int> { 20, 31, 38, 39, 40, 42, 45 };
+            var minSum=minExample.Sum();
             for (int e2 = 14; e2 <= 66-5; e2++) //bounded by 14 and e2<e3<e4...<e7<=66
             {
                 var elementBound = 2 * e2 - 1;//Prop 2 says e_n<e1+e2<=2*e2-1 so this is an upper bound for any element
@@ -68,10 +70,11 @@ namespace project_euler.Problems.ConcreteProblems
                                     {
                                         var sss1 = sss7.Clone();
                                         if (e1 + e2 + e3 + e4 + e5 + e6 + e7 <= upperBound
-                                            && sss1.Add(e1))
+                                            && sss1.Add(e1) 
+                                            && e1 + e2 + e3 + e4 + e5 + e6 + e7 <= minSum) //Should be < but <= allows another example
                                         {
-                                            return e1.ToString() + e2.ToString() + e3.ToString() + e4.ToString() + e5.ToString()
-                                                + e6.ToString() + e7.ToString();
+                                            minSum = e1 + e2 + e3 + e4 + e5 + e6 + e7;
+                                            minExample = new List<int> { e1, e2, e3, e4, e5, e6, e7 };
                                         }
                                     }
                                 }
@@ -80,7 +83,8 @@ namespace project_euler.Problems.ConcreteProblems
                     }
                 }
             }
-            return "";
+            return minExample[0].ToString() + minExample[1].ToString() + minExample[2].ToString() + minExample[3].ToString() + minExample[4].ToString()
+                                                + minExample[5].ToString() + minExample[6].ToString();
         }
     }
 }
