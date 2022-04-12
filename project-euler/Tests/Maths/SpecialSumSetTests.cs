@@ -24,7 +24,7 @@ namespace Tests.Maths
         {
             var sut = new SpecialSumSet();
             var result = candidateSet.All(x => sut.Add(x));
-            
+
             result.ShouldBe(expectedResult);
         }
     }

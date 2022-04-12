@@ -25,7 +25,7 @@
                 subsetSums.Add(i);
                 return true;
             }
-            if(set.Count == 1)
+            if (set.Count == 1)
             {
                 set.Add(i);
                 var currentSums = subsetSums.ToList();

@@ -1,5 +1,4 @@
 ﻿using project_euler.Maths.Primes;
-using project_euler.Util;
 
 namespace project_euler.Problems.ConcreteProblems
 {
@@ -16,7 +15,7 @@ namespace project_euler.Problems.ConcreteProblems
             var primefactorization = PrimesCalculator.FindPrimeFactors(index); //Store factorization for reuse for next index
             while (true)
             {
-                var triangleNumber = index*(index-1)/2; //Eulers formula displaced by 1
+                var triangleNumber = index * (index - 1) / 2; //Eulers formula displaced by 1
                 var factorsNminusOne = primefactorization; //Store previous in temp variable
                 var factorsN = primefactorization = PrimesCalculator.FindPrimeFactors(index);
                 var totalFactors = factorsN.Add(factorsNminusOne);

@@ -1,8 +1,8 @@
 ﻿namespace project_euler.Util
 {
-    internal class DictCacheWithFunct<TKey,TValue> where TKey : struct, IEquatable<TKey>
+    internal class DictCacheWithFunct<TKey, TValue> where TKey : struct, IEquatable<TKey>
     {
-        private readonly Dictionary<TKey, TValue> dict=new();
+        private readonly Dictionary<TKey, TValue> dict = new();
         private readonly Func<TKey, TValue> generator;
 
         public DictCacheWithFunct(Func<TKey, TValue> generator)

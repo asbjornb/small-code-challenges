@@ -18,7 +18,7 @@
             if (num <= 2) { return new(); }
             if (maxChecked >= num)
             {
-                return knownPrimes.GetViewBetween(2, num-1);
+                return knownPrimes.GetViewBetween(2, num - 1);
             }
             knownPrimes = new SortedSet<int>(PrimeBuilder.BuildPrimesBelow(num));
             maxChecked = num;

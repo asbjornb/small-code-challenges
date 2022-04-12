@@ -44,7 +44,7 @@ namespace Tests.Maths
             result.ShouldBe(expectedResult.ToList());
         }
 
-        static readonly object[] TestProductCases =
+        private static readonly object[] TestProductCases =
         {
             new object[] { 2, new List<PrimeFactor>() { new PrimeFactor(2,1) } },
             new object[] { 3, new List<PrimeFactor>() { new PrimeFactor(3,1) } },

@@ -32,7 +32,7 @@
                 if (IsDivisible(num, i))
                 {
                     var otherFactor = num / i;
-                    if(otherFactor > 999) //Further loops with smaller i's will continue to have otherFactor>999
+                    if (otherFactor > 999) //Further loops with smaller i's will continue to have otherFactor>999
                     {
                         return false;
                     }

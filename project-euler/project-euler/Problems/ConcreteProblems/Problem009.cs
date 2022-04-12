@@ -16,7 +16,7 @@
                 //a=sum-b-c>sum-2c
                 var aLimitLow = Math.Max(1, 1000 - (2 * c));
                 //a=sum-b-c<sum-a-c => 2a<sum-c => a<(sum-c)/2
-                var aLimitHigh = Math.Min(c, (1000 - c)/2);
+                var aLimitHigh = Math.Min(c, (1000 - c) / 2);
 
                 for (int a = aLimitLow; a < aLimitHigh; a++)
                 {

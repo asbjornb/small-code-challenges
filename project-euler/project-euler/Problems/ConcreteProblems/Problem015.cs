@@ -22,10 +22,10 @@
             return FactorialFromTo(num);
         }
 
-        public static double FactorialFromTo(int from, int to=1)
+        public static double FactorialFromTo(int from, int to = 1)
         {
             double product = 1;
-            for(int i = from; i > to; i--)
+            for (int i = from; i > to; i--)
             {
                 product *= i;
             }

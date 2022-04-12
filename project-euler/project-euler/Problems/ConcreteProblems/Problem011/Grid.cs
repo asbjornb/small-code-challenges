@@ -5,6 +5,7 @@
         private readonly List<CoordinateWithInt> grid = new();
         private readonly int maxX;
         private readonly int maxY;
+
         public Grid(int[][] grid)
         {
             for (int i = 0; i < grid[0].Length; i++)

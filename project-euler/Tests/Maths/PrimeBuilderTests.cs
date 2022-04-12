@@ -2,6 +2,7 @@
 using project_euler.Maths.Primes.Generation;
 using Shouldly;
 using System;
+
 namespace Tests.Maths
 {
     [TestFixture]

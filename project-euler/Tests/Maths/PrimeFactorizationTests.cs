@@ -17,7 +17,7 @@ namespace Tests.Maths
             sut.Product().ShouldBe(expectedResult);
         }
 
-        static readonly object[] TestProductCases =
+        private static readonly object[] TestProductCases =
         {
             new object[] { new List<PrimeFactor>() { new PrimeFactor(2,2) }, 4 },
             new object[] { new List<PrimeFactor>() { new PrimeFactor(2,2), new PrimeFactor(5, 1) }, 20 },

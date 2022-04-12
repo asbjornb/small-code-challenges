@@ -2,7 +2,7 @@
 {
     internal class Problem014 : BaseProblem, IProblem
     {
-        private static readonly Dictionary<long, int> known = new() { [1]=1 };
+        private static readonly Dictionary<long, int> known = new() { [1] = 1 };
 
         public string Solve()
         {
@@ -16,7 +16,7 @@
             var maxIterations = 0;
             var result = 0;
 
-            for(int i = 2; i < limit; i++)
+            for (int i = 2; i < limit; i++)
             {
                 var iterations = GetIterations(i);
                 if (iterations > maxIterations)
@@ -42,7 +42,7 @@
 
         private static long GetNextCollatz(long current)
         {
-            if(current%2 == 0)
+            if (current % 2 == 0)
             {
                 return current / 2;
             }
