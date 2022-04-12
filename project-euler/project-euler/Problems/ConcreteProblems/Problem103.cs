@@ -30,12 +30,13 @@ namespace project_euler.Problems.ConcreteProblems
             //Lets find the set {e2,...,e7} which is again SSS:
             for (int e2 = 14; e2 <= 66-5; e2++) //bounded by 14 and e2<e3<e4...<e7<=66
             {
-                var elementBound = 2 * e2 - 1;//Prop 2 says e_n<e1+e2<=2*e2-1
+                var elementBound = 2 * e2 - 1;//Prop 2 says e_n<e1+e2<=2*e2-1 so this is an upper bound for any element
+                                              //Used as standin for e1+e2 in many inequalities too since e1+e2<=2*e2-1
                 for (int e3 = e2 + 1; e3 <= Math.Min(66 - 4, elementBound); e3++) 
                 {
                     for (int e4 = e3 + 1; e4 <= Math.Min(66 - 3, elementBound); e4++)
                     {
-                        if (e2 + e3 + 4 * e4 + 7 > upperBound) //e1>=1, e5>=e4+1 etc.
+                        if (e3 + 5 * e4 + 7 > upperBound) //e1+e2>=e4+1, e5>=e4+1 etc.
                             { break; }
                         var sss = new SpecialSumSet();
                         sss.Add(e2);
@@ -46,17 +47,21 @@ namespace project_euler.Problems.ConcreteProblems
                         }
                         for (int e5 = e4 + 1; e5 <= Math.Min(66 - 2, elementBound); e5++)
                         {
-                            if (e2 + e3 + e4 + 3 * e5 + 4 > upperBound){ break; }
+                            if (e3 + e4 + 4 * e5 + 4 > upperBound
+                                || e5+e4 >= elementBound+e3){ break; } //Prop 2 says: e4+e5<e1+e2+e3<=2*e2-1+e3
                             var sss5 = sss.Clone();
                             if (!sss5.Add(e5)){ continue; }
                             for (int e6 = e5 + 1; e6 <= Math.Min(66 - 1, elementBound); e6++)
                             {
-                                if (e2 + e3 + e4 + e5 + 2 * e6 + 2 > upperBound) { break; }
+                                if (e3 + e4 + e5 + 3 * e6 + 2 > upperBound
+                                    || e6+e5 >= elementBound+e3) { break; }
                                 var sss6 = sss5.Clone();
                                 if (!sss6.Add(e6)) { continue; }
                                 for (int e7 = e6 + 1; e6 <= Math.Min(66, elementBound); e7++)
                                 {
-                                    if (e2 + e3 + e4 + e5 + e6 +e7 + 1 > upperBound) { break; }
+                                    if (e3 + e4 + e5 + e6 + 2 * e7 + 1 > upperBound
+                                        || e6+e7 >= elementBound+e3
+                                        || e5+e6+e7 >= elementBound+e3+e4) { break; }
                                     var sss7 = sss6.Clone();
                                     if (!sss7.Add(e7)) { continue; }
                                     for (int e1 = e2-1; e1+e2 > e7; e1--)
