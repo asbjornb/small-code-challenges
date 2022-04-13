@@ -1,4 +1,4 @@
-﻿using project_euler.Maths.Primes;
+﻿using project_euler.Maths.NumberTheory;
 
 namespace project_euler.Problems.ConcreteProblems
 {
@@ -14,8 +14,7 @@ namespace project_euler.Problems.ConcreteProblems
             var divisorSums = new HashSet<(int,int)>(); //holds (num, DivisorSum(num)) tuples
             for (int i = 1; i <= input; i++)
             {
-                var primefactors = PrimesCalculator.FindPrimeFactors(i);
-                var divisorSum = DivisorSum(primefactors)-i;
+                var divisorSum = DivisorSum(i);
                 divisorSums.Add((i, divisorSum));
             }
 
@@ -30,27 +29,19 @@ namespace project_euler.Problems.ConcreteProblems
             return pairs;
         }
 
-        public static int DivisorSum(PrimeFactorization primefactors)
+        public static int DivisorSum(int num)
         {
             var result = 1;
-            foreach (var (prime, exponent) in primefactors.ToDict())
+            for(int i = 2; i*i <= num; i++)
             {
-                var primePowers = 1;
-                for (int i = 1; i <= exponent; i++)
+                if(num % i == 0)
                 {
-                    primePowers += Pow(prime, i);
+                    result += i;
+                    if(num/i != i)
+                    {
+                        result += num / i;
+                    }
                 }
-                result *= primePowers;
-            }
-            return result;
-        }
-
-        private static int Pow(int baseNum, int exponent)
-        {
-            var result = baseNum;
-            for (int i = 1; i < exponent; i++)
-            {
-                result *= baseNum;
             }
             return result;
         }

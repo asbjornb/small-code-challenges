@@ -14,7 +14,7 @@ namespace Tests.Problem021Tests
         [TestCase(284, 220)]
         public void ProperDivisorSum(int num, int expectedResult)
         {
-            var result = Problem021.DivisorSum(PrimesCalculator.FindPrimeFactors(num))-num;
+            var result = Problem021.DivisorSum(num);
 
             result.ShouldBe(expectedResult);
         }
