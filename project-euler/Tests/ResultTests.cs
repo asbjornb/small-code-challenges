@@ -29,6 +29,7 @@ namespace Tests
         [TestCase("017", "21124")]
         [TestCase("018", "1074")]
         [TestCase("019", "171")]
+        [TestCase("020", "648")]
         [TestCase("067", "7273")]
         [TestCase("103", "20313839404245")]
         [TestCase("105", "73702")]
