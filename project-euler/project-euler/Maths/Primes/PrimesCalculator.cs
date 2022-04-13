@@ -7,12 +7,16 @@ namespace project_euler.Maths.Primes
     {
         public static PrimeFactorization FindPrimeFactors(int num)
         {
+            var primeFactors = new PrimeFactorization();
+            if(num <= 1)
+            {
+                return primeFactors;
+            }
             var primeGenerator = ListOfPrimes.Construct();
             var primes = primeGenerator.GetPrimesBelow(num + 1).ToList();
 
             var rest = num;
             int index = 0;
-            var primeFactors = new PrimeFactorization();
             while (primes[index] <= rest)
             {
                 if (NumberTheoryCalculator.IsDivisible(rest, primes[index]))
