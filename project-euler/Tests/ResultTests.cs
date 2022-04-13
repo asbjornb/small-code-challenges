@@ -28,6 +28,7 @@ namespace Tests
         [TestCase("016", "1366")]
         [TestCase("017", "21124")]
         [TestCase("018", "1074")]
+        [TestCase("067", "7273")]
         [TestCase("103", "20313839404245")]
         [TestCase("105", "73702")]
         public void TestSolvers(string problem, string expectedResult, int secondsAllowed = 2)
