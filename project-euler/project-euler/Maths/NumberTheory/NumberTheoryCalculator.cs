@@ -18,5 +18,22 @@ namespace project_euler.Maths.NumberTheory
         {
             return num % divisor == 0;
         }
+
+        public static int ProperDivisorSum(int num)
+        {
+            var result = 1;
+            for (int i = 2; i * i <= num; i++)
+            {
+                if (num % i == 0)
+                {
+                    result += i;
+                    if (num / i != i)
+                    {
+                        result += num / i;
+                    }
+                }
+            }
+            return result;
+        }
     }
 }

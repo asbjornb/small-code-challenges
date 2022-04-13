@@ -1,12 +1,11 @@
 ﻿using NUnit.Framework;
-using project_euler.Maths.Primes;
-using project_euler.Problems.ConcreteProblems;
+using project_euler.Maths.NumberTheory;
 using Shouldly;
 
 namespace Tests.Problem021Tests
 {
     [TestFixture]
-    internal class Problem021Tests
+    internal class NumberTheoryCalculatorTests
     {
         [Test]
         [TestCase(10, 8)]
@@ -14,7 +13,7 @@ namespace Tests.Problem021Tests
         [TestCase(284, 220)]
         public void ProperDivisorSum(int num, int expectedResult)
         {
-            var result = Problem021.DivisorSum(num);
+            var result = NumberTheoryCalculator.ProperDivisorSum(num);
 
             result.ShouldBe(expectedResult);
         }

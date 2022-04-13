@@ -14,7 +14,7 @@ namespace project_euler.Problems.ConcreteProblems
             var divisorSums = new HashSet<(int,int)>(); //holds (num, DivisorSum(num)) tuples
             for (int i = 1; i <= input; i++)
             {
-                var divisorSum = DivisorSum(i);
+                var divisorSum = NumberTheoryCalculator.ProperDivisorSum(i);
                 divisorSums.Add((i, divisorSum));
             }
 
@@ -27,23 +27,6 @@ namespace project_euler.Problems.ConcreteProblems
                 }
             }
             return pairs;
-        }
-
-        public static int DivisorSum(int num)
-        {
-            var result = 1;
-            for(int i = 2; i*i <= num; i++)
-            {
-                if(num % i == 0)
-                {
-                    result += i;
-                    if(num/i != i)
-                    {
-                        result += num / i;
-                    }
-                }
-            }
-            return result;
         }
     }
 }
