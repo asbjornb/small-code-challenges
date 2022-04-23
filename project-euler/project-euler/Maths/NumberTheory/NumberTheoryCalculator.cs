@@ -14,11 +14,6 @@ namespace project_euler.Maths.NumberTheory
             return result;
         }
 
-        public static bool IsDivisible(int num, int divisor)
-        {
-            return num % divisor == 0;
-        }
-
         public static int ProperDivisorSum(int num)
         {
             var result = 1;
