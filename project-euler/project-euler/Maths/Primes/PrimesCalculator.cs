@@ -1,5 +1,4 @@
-﻿using project_euler.Maths.NumberTheory;
-using project_euler.Maths.Primes.Generation;
+﻿using project_euler.Maths.Primes.Generation;
 
 namespace project_euler.Maths.Primes
 {
@@ -19,7 +18,7 @@ namespace project_euler.Maths.Primes
             int index = 0;
             while (primes[index] <= rest)
             {
-                if (NumberTheoryCalculator.IsDivisible(rest, primes[index]))
+                if (rest % primes[index] == 0)
                 {
                     rest /= primes[index];
                     primeFactors.AddFactor(primes[index]);

@@ -9,6 +9,11 @@
             primeFactors = new();
         }
 
+        private PrimeFactorization(PrimeFactorization factors)
+        {
+            primeFactors = new Dictionary<int, int>(factors.primeFactors); //Shallow dict clone
+        }
+
         public PrimeFactorization(List<PrimeFactor> factors)
         {
             primeFactors = new();
@@ -97,7 +102,7 @@
 
         public PrimeFactorization Clone()
         {
-            return new PrimeFactorization(ToList());
+            return new PrimeFactorization(this);
         }
 
         public long Product()
