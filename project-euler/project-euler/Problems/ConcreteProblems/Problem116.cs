@@ -7,14 +7,15 @@
             return FindCombinations().ToString();
         }
 
-        private static Int64 FindCombinations()
+        //See #114 for idea
+        private static long FindCombinations()
         {
             const int minRedSequence = 2;
             const int minGreenSequence = 3;
             const int minBlueSequence = 4;
-            var redPathsToState = new Int64[minRedSequence + 1];
-            var greenPathsToState = new Int64[minGreenSequence + 1];
-            var bluePathsToState = new Int64[minBlueSequence + 1];
+            var redPathsToState = new long[minRedSequence + 1];
+            var greenPathsToState = new long[minGreenSequence + 1];
+            var bluePathsToState = new long[minBlueSequence + 1];
             redPathsToState[0] = 1;
             greenPathsToState[0] = 1;
             bluePathsToState[0] = 1;
@@ -47,7 +48,7 @@
             }
             return redPathsToState[0] - 1 + redPathsToState[minRedSequence]
                 + (greenPathsToState[0] - 1 + greenPathsToState[minGreenSequence])
-                + (bluePathsToState[0] -1 + bluePathsToState[minBlueSequence]);
+                + (bluePathsToState[0] - 1 + bluePathsToState[minBlueSequence]);
         }
     }
 }

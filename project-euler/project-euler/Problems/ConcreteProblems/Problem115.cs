@@ -7,6 +7,7 @@
             return FindMinLengthOver(1000000).ToString();
         }
 
+        //See #114 for idea
         private static int FindMinLengthOver(int limit)
         {
             var length = 1; //
