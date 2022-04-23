@@ -11,12 +11,12 @@
 
         //This version is actually slower than previous imperial version
         //I think it's much nicer and more intuitive so keeping it for now
-        private static long LongestCollatzBelow(long limit)
+        private static long LongestCollatzBelow(int limit)
         {
             var maxIterations = 0;
             var result = 0;
 
-            for (int i = 2; i < limit; i++)
+            for (int i = limit/2; i < limit; i++) //First half of numbers are mirrorered by second half /2
             {
                 var iterations = GetIterations(i);
                 if (iterations > maxIterations)
@@ -30,23 +30,18 @@
 
         private static int GetIterations(long num)
         {
-            if (known.TryGetValue(num, out var knownIterations))
+            if(num % 2 == 0) //For even shortcut to smaller numbers
+            {
+                return GetIterations(num / 2) + 1;
+            }
+            if (known.TryGetValue(num, out var knownIterations)) //For unevens check and otherwise persist
             {
                 return knownIterations;
             }
             else
             {
-                return known[num] = 1 + GetIterations(GetNextCollatz(num));
+              return known[num] = GetIterations(3 * num + 1) + 1;
             }
-        }
-
-        private static long GetNextCollatz(long current)
-        {
-            if (current % 2 == 0)
-            {
-                return current / 2;
-            }
-            return (current * 3) + 1;
         }
     }
 }
