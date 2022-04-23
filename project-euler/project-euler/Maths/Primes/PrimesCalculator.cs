@@ -12,20 +12,19 @@ namespace project_euler.Maths.Primes
                 return primeFactors;
             }
             var primeGenerator = ListOfPrimes.Construct();
-            var primes = primeGenerator.GetPrimesBelow(num + 1).ToList();
+            var primes = primeGenerator.GetPrimesBelow(num + 1);
 
             var rest = num;
-            int index = 0;
-            while (primes[index] <= rest)
+            foreach (var prime in primes)
             {
-                if (rest % primes[index] == 0)
+                if (prime > rest)
                 {
-                    rest /= primes[index];
-                    primeFactors.AddFactor(primes[index]);
+                    break;
                 }
-                else
+                while (rest % prime == 0)
                 {
-                    index++;
+                    rest /= prime;
+                    primeFactors.AddFactor(prime);
                 }
             }
             return primeFactors;
