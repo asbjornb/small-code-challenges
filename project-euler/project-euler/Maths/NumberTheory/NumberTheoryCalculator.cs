@@ -6,11 +6,15 @@ namespace project_euler.Maths.NumberTheory
     {
         public static PrimeFactorization SmallestCommonMultiple(PrimeFactorization p1, PrimeFactorization p2)
         {
-            var firstPairs = p1.ToList();
-            var secondPairs = p2.ToList();
             var result = new PrimeFactorization();
-            firstPairs.ForEach(x => result.IncreaseIfLarger(x));
-            secondPairs.ForEach(x => result.IncreaseIfLarger(x));
+            foreach (var factor in p1)
+            {
+                result.AddFactor(factor);
+            }
+            foreach (var factor in p2)
+            {
+                result.IncreaseIfLarger(factor);
+            }
             return result;
         }
 

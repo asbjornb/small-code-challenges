@@ -1,6 +1,8 @@
-﻿namespace project_euler.Maths.Primes
+﻿using System.Collections;
+
+namespace project_euler.Maths.Primes
 {
-    internal class PrimeFactorization
+    internal class PrimeFactorization : IEnumerable<PrimeFactor>
     {
         private readonly Dictionary<int, int> primeFactors;
 
@@ -123,6 +125,16 @@
                 result *= baseNum;
             }
             return result;
+        }
+
+        public IEnumerator<PrimeFactor> GetEnumerator()
+        {
+            return primeFactors.Select(factor => new PrimeFactor(factor.Key, factor.Value)).GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
         }
     }
 }
