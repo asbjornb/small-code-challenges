@@ -5,21 +5,23 @@
         private static readonly Dictionary<int, int> powerDict = new();
         public string Solve()
         {
-            PopulateDict();
-            return FindDigitFifthPowers().ToString();
+            var powerDict = CreateDict();
+            return FindDigitFifthPowers(powerDict).ToString();
         }
 
         //Notes:
         //All permutations have same digit sum so should only be checked once - 6 forloops to 10.
-        private static void PopulateDict()
+        private static Dictionary<int, int> CreateDict()
         {
+            var powerDict = new Dictionary<int, int>();
             for (int i = 0; i < 10; i++)
             {
                 powerDict.Add(i, (int)Math.Pow(i, 5));
             }
+            return powerDict;
         }
 
-        private static int FindDigitFifthPowers()
+        private static int FindDigitFifthPowers(Dictionary<int, int> powerDict)
         {
             var sum = 0;
             for (int a = 1; a < 10; a++)
