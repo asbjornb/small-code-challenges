@@ -42,12 +42,20 @@
                                         + powerDict.GetValueOrDefault(e, 0)
                                         + powerDict.GetValueOrDefault(f, 0);
                                     //See if fifthpowerdigitsum has same digits as a,b,...f
-                                    //Compare via sequenceequals but remember to account for prefixed 0's
-                                    var digitsInDigitSum = fifthPowerDigitSum.ToString().Select(x => x - '0').OrderByDescending(x => x);
-                                    var length = fifthPowerDigitSum.ToString().Length;
+                                    //Remember to account for prefixed 0's
+                                    var digitsInDigitSum = fifthPowerDigitSum.ToString().Select(x => x - '0').OrderByDescending(x => x).ToList();
                                     var toCompare = new List<int> { a, b, c, d, e, f };
-                                    if(toCompare.Skip(length).All(x => x == 0) //Check that length matches when removing prepended-zeroes
-                                        && digitsInDigitSum.SequenceEqual(toCompare.Take(length))) //Check for actual match
+                                    var length = fifthPowerDigitSum.ToString().Length;
+                                    var isFifthPowerDigitSum = true;
+                                    for (int i = 0; i < 6; i++)
+                                    {
+                                        if ((i < length && digitsInDigitSum[i] != toCompare[i]) || (i >= length && toCompare[i] != 0))
+                                        {
+                                            isFifthPowerDigitSum = false;
+                                            break;
+                                        }
+                                    }
+                                    if(isFifthPowerDigitSum)
                                     {
                                         sum += fifthPowerDigitSum;
                                     }
