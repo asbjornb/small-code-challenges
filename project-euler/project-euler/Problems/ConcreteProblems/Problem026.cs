@@ -1,6 +1,4 @@
-﻿using System.Numerics;
-
-namespace project_euler.Problems.ConcreteProblems
+﻿namespace project_euler.Problems.ConcreteProblems
 {
     internal class Problem026 : BaseProblem, IProblem
     {
@@ -15,7 +13,6 @@ namespace project_euler.Problems.ConcreteProblems
             var maxRecursionCandidate = 7;
             for (int i = 999; i > 1; i--)
             {
-                //Discarding first part to make sure to hold cycles - see 1/6 = 0.1666... so we need to discard the 1 before looking for cycles
                 var recursionLength = GetRecursionLength(i);
                 if (recursionLength > maxRecursionLength)
                 {
@@ -33,9 +30,10 @@ namespace project_euler.Problems.ConcreteProblems
 
         public static int GetRecursionLength(int i)
         {
-            var remainders = new List<int>();
+            var remainders = new Dictionary<int, int>(); //Key is remainder, value is index. Faster contains than a list
             var remainder = 1;
-            while(remainder != 0)
+            //Inspired by long division
+            while(true)
             {
                 while (remainder < i)
                 {
@@ -43,13 +41,12 @@ namespace project_euler.Problems.ConcreteProblems
                 }
                 remainder %= i;
                 if (remainder == 0) { return 0; }
-                if (remainders.Contains(remainder))
+                if (remainders.TryGetValue(remainder, out var index))
                 {
-                    return remainders.Count - remainders.IndexOf(remainder);
+                    return remainders.Count - index;
                 }
-                remainders.Add(remainder);
+                remainders.Add(remainder, remainders.Count);
             }
-            return 0;
         }
     }
 }
