@@ -15,10 +15,8 @@ namespace project_euler.Problems.ConcreteProblems
             var maxRecursionCandidate = 7;
             for (int i = 999; i > 1; i--)
             {
-                var multiplier = BigInteger.Pow(10, 3*(i+1));
-                var decimalRepresentation = multiplier / i; //Using a large multiplier push this into integer territory
                 //Discarding first part to make sure to hold cycles - see 1/6 = 0.1666... so we need to discard the 1 before looking for cycles
-                var recursionLength = GetRecursionLength(decimalRepresentation.ToString()[i..]);
+                var recursionLength = GetRecursionLength(i);
                 if (recursionLength > maxRecursionLength)
                 {
                     maxRecursionLength = recursionLength;
@@ -33,19 +31,25 @@ namespace project_euler.Problems.ConcreteProblems
             return maxRecursionCandidate;
         }
 
-        public static int GetRecursionLength(string decimalRepresentation)
+        public static int GetRecursionLength(int i)
         {
-            var maxLength = decimalRepresentation.Length / 2;
-            for (int i = 0; i < maxLength; i++)
+            var remainders = new List<int>();
+            var remainder = 1;
+            while(remainder != 0)
             {
-                var candidateToSearch = decimalRepresentation + decimalRepresentation.Substring(i, maxLength);
-                var matchAt = candidateToSearch.IndexOf(decimalRepresentation, 1);
-                if (matchAt!=-1 && matchAt < decimalRepresentation.Length-1 && matchAt<=maxLength)
+                while (remainder < i)
                 {
-                    return matchAt;
+                    remainder *= 10;
                 }
+                remainder %= i;
+                if (remainder == 0) { return 0; }
+                if (remainders.Contains(remainder))
+                {
+                    return remainders.Count - remainders.IndexOf(remainder);
+                }
+                remainders.Add(remainder);
             }
-            return 1;
+            return 0;
         }
     }
 }
