@@ -10,9 +10,8 @@
         }
 
         //Notes:
-        //A naive brute force approach for now. To optimize consider:
-        //Also permutations have same digit sum so should only be checked once - 6 forloops to 10 should be faster.
-        private void PopulateDict()
+        //All permutations have same digit sum so should only be checked once - 6 forloops to 10.
+        private static void PopulateDict()
         {
             for (int i = 0; i < 10; i++)
             {
@@ -20,24 +19,45 @@
             }
         }
 
-        private static double FindDigitFifthPowers()
+        private static int FindDigitFifthPowers()
         {
             var sum = 0;
-            //The number is decently bounded by 10 and 9^5 * 6 = 354294
-            for (int i = 10; i <= 354294; i++)
+            for (int a = 1; a < 10; a++)
             {
-                if(IsDigitFifthPower(i))
+                for (int b = 1; b <= a; b++) //Two digits must be non-zero - otherwise it's not a sum as per the problem text.
                 {
-                    sum += i;
+                    for (int c = 0; c <= b; c++)
+                    {
+                        for (int d = 0; d <= c; d++)
+                        {
+                            for (int e = 0; e <= d; e++)
+                            {
+                                for (int f = 0; f <= e; f++)
+                                {
+                                    //a-f are digits
+                                    var fifthPowerDigitSum = powerDict.GetValueOrDefault(a, 0)
+                                        + powerDict.GetValueOrDefault(b, 0)
+                                        + powerDict.GetValueOrDefault(c, 0)
+                                        + powerDict.GetValueOrDefault(d, 0)
+                                        + powerDict.GetValueOrDefault(e, 0)
+                                        + powerDict.GetValueOrDefault(f, 0);
+                                    //See if fifthpowerdigitsum has same digits as a,b,...f
+                                    //Compare via sequenceequals but remember to account for prefixed 0's
+                                    var digitsInDigitSum = fifthPowerDigitSum.ToString().Select(x => x - '0').OrderByDescending(x => x);
+                                    var length = fifthPowerDigitSum.ToString().Length;
+                                    var toCompare = new List<int> { a, b, c, d, e, f };
+                                    if(toCompare.Skip(length).All(x => x == 0) //Check that length matches when removing prepended-zeroes
+                                        && digitsInDigitSum.SequenceEqual(toCompare.Take(length))) //Check for actual match
+                                    {
+                                        sum += fifthPowerDigitSum;
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             }
             return sum;
-        }
-
-        private static bool IsDigitFifthPower(int i)
-        {
-            var asDigits = i.ToString().Select(x => x-'0');
-            return i == asDigits.Sum(x => powerDict.GetValueOrDefault(x, 0));
         }
     }
 }
