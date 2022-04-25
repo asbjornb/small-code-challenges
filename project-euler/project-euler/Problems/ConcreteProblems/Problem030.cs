@@ -11,17 +11,17 @@
 
         //Notes:
         //All permutations have same digit sum so should only be checked once - 6 forloops to 10.
-        private static Dictionary<int, int> CreateDict()
+        private static List<int> CreateDict()
         {
-            var powerDict = new Dictionary<int, int>();
+            var powerDict = new List<int>(10);
             for (int i = 0; i < 10; i++)
             {
-                powerDict.Add(i, (int)Math.Pow(i, 5));
+                powerDict.Add((int)Math.Pow(i, 5));
             }
             return powerDict;
         }
 
-        private static int FindDigitFifthPowers(Dictionary<int, int> powerDict)
+        private static int FindDigitFifthPowers(List<int> powerDict)
         {
             var sum = 0;
             for (int a = 1; a < 10; a++)
@@ -37,12 +37,12 @@
                                 for (int f = 0; f <= e; f++)
                                 {
                                     //a-f are digits
-                                    var fifthPowerDigitSum = powerDict.GetValueOrDefault(a, 0)
-                                        + powerDict.GetValueOrDefault(b, 0)
-                                        + powerDict.GetValueOrDefault(c, 0)
-                                        + powerDict.GetValueOrDefault(d, 0)
-                                        + powerDict.GetValueOrDefault(e, 0)
-                                        + powerDict.GetValueOrDefault(f, 0);
+                                    var fifthPowerDigitSum = powerDict[a]
+                                        + powerDict[b]
+                                        + powerDict[c]
+                                        + powerDict[d]
+                                        + powerDict[e]
+                                        + powerDict[f];
                                     //See if fifthpowerdigitsum has same digits as a,b,...f
                                     //Remember to account for prefixed 0's
                                     var digitsInDigitSum = fifthPowerDigitSum.ToString().Select(x => x - '0').OrderByDescending(x => x).ToList();
