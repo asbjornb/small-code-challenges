@@ -2,7 +2,6 @@
 {
     internal class Problem030 : BaseProblem, IProblem
     {
-        private static readonly Dictionary<int, int> powerDict = new();
         public string Solve()
         {
             var powerDict = CreateDict();
@@ -11,17 +10,17 @@
 
         //Notes:
         //All permutations have same digit sum so should only be checked once - 6 forloops to 10.
-        private static List<int> CreateDict()
+        private static int[] CreateDict()
         {
-            var powerDict = new List<int>(10);
+            var powerDict = new int[10];
             for (int i = 0; i < 10; i++)
             {
-                powerDict.Add((int)Math.Pow(i, 5));
+                powerDict[i]=(int)Math.Pow(i, 5);
             }
             return powerDict;
         }
 
-        private static int FindDigitFifthPowers(List<int> powerDict)
+        private static int FindDigitFifthPowers(int[] powerDict)
         {
             var sum = 0;
             for (int a = 1; a < 10; a++)
@@ -45,17 +44,18 @@
                                         + powerDict[f];
                                     //See if fifthpowerdigitsum has same digits as a,b,...f
                                     //Remember to account for prefixed 0's
-                                    var digitsInDigitSum = fifthPowerDigitSum.ToString().Select(x => x - '0').OrderByDescending(x => x).ToList();
                                     var toCompare = new List<int> { a, b, c, d, e, f };
-                                    var length = fifthPowerDigitSum.ToString().Length;
                                     var isFifthPowerDigitSum = true;
-                                    for (int i = 0; i < 6; i++)
+                                    var remainder = fifthPowerDigitSum;
+                                    for (int i = 100000; i >= 1; i /= 10)
                                     {
-                                        if ((i < length && digitsInDigitSum[i] != toCompare[i]) || (i >= length && toCompare[i] != 0))
+                                        var digit = remainder/i;
+                                        if (!toCompare.Remove(digit))
                                         {
                                             isFifthPowerDigitSum = false;
                                             break;
                                         }
+                                        remainder -= digit * i;
                                     }
                                     if(isFifthPowerDigitSum)
                                     {
