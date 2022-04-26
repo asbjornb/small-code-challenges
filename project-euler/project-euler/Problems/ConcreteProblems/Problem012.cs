@@ -31,7 +31,7 @@ namespace project_euler.Problems.ConcreteProblems
         private static int NumDivisors(PrimeFactorization primeFactors)
         {
             var divisors = 1;
-            foreach (var factor in primeFactors.ToList())
+            foreach (var factor in primeFactors)
             {
                 divisors *= (factor.Exponent + 1);
             }

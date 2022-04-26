@@ -19,12 +19,12 @@ namespace project_euler.Maths.Primes
             {
                 return primeFactors;
             }
-            var primes = ListOfPrimes.GetPrimesBelow(num + 1);
+            var primes = ListOfPrimes.GetPrimesBelow((int)Math.Sqrt(num) + 1);
 
             var rest = num;
             foreach (var prime in primes)
             {
-                if (prime > rest)
+                if (rest == 1 || rest < prime)
                 {
                     break;
                 }
@@ -33,6 +33,10 @@ namespace project_euler.Maths.Primes
                     rest /= prime;
                     primeFactors.AddFactor(prime);
                 }
+            }
+            if (rest > 1)
+            {
+                primeFactors.AddFactor(rest);
             }
             return primeFactors;
         }
@@ -43,7 +47,7 @@ namespace project_euler.Maths.Primes
             {
                 return num == 2 || num == 3;
             }
-            if (num >= 1000 && num <= PrimeCheckLimit)
+            if (num <= PrimeCheckLimit)
             {
                 return Primes.Contains(num);
             }

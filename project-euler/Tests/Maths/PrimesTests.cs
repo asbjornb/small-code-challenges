@@ -46,7 +46,9 @@ namespace Tests.Maths
             new object[] { 3, new List<PrimeFactor>() { new PrimeFactor(3,1) } },
             new object[] { 4, new List<PrimeFactor>() { new PrimeFactor(2,2) } },
             new object[] { 12, new List<PrimeFactor>() { new PrimeFactor(2,2), new PrimeFactor(3,1) } },
-            new object[] { 15, new List<PrimeFactor>() { new PrimeFactor(3,1), new PrimeFactor(5,1) } }
+            new object[] { 15, new List<PrimeFactor>() { new PrimeFactor(3,1), new PrimeFactor(5,1) } },
+            new object[] { 363, new List<PrimeFactor>() { new PrimeFactor(3,1), new PrimeFactor(11,2) } },
+            new object[] { 847, new List<PrimeFactor>() { new PrimeFactor(7,1), new PrimeFactor(11,2) } }
         };
     }
 }
