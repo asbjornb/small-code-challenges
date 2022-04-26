@@ -1,4 +1,4 @@
-﻿using project_euler.Maths.Primes.Generation;
+﻿using project_euler.Maths.Primes;
 
 namespace project_euler.Problems.ConcreteProblems
 {
@@ -21,7 +21,7 @@ namespace project_euler.Problems.ConcreteProblems
                 for (int i = 0; i < 4; i++)
                 {
                     increment += 2 * (layer - 1);
-                    if (i<3 && IsPrime(increment)) //i=3 is the odd-squares diagonal
+                    if (i<3 && PrimesCalculator.IsPrime(increment)) //i=3 is the odd-squares diagonal
                     {
                         primes++;
                     }
@@ -34,22 +34,6 @@ namespace project_euler.Problems.ConcreteProblems
                 }
                 layer++;
             }
-        }
-
-        public static bool IsPrime(int number)
-        {
-            if (number <= 1) return false;
-            if (number == 2) return true;
-            if (number % 2 == 0) return false;
-
-            for (int i = 3; i*i <= number; i += 2)
-            {
-                if (number % i == 0)
-                {
-                    return false;
-                }
-            }
-            return true;
         }
     }
 }
