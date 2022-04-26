@@ -6,10 +6,10 @@
         {
             if (num < 3)
             {
-                throw new ArgumentException("Use only with num>=3");
+                yield break;
             }
             //Marking notPrimes is easier since bool defaults to false
-            bool[] notPrime = new bool[num];
+            var notPrime = new bool[num];
             var limit = (int)Math.Sqrt(num);
             notPrime[0] = true; //These don't need to be marked as prime, but why not?
             notPrime[1] = true;

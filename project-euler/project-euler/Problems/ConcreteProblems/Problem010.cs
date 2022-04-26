@@ -11,8 +11,7 @@ namespace project_euler.Problems.ConcreteProblems
 
         private static long SumPrimesBelow(int limit)
         {
-            var primeGen = ListOfPrimes.Construct();
-            var primes = primeGen.GetPrimesBelow(limit);
+            var primes = ListOfPrimes.GetPrimesBelow(limit);
             var sum = 0L;
             foreach (var prime in primes)
             {

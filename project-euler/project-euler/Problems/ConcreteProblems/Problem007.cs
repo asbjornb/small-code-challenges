@@ -11,15 +11,9 @@ namespace project_euler.Problems.ConcreteProblems
 
         private static long FindPrimeNumberN(int n)
         {
-            var primeCalc = ListOfPrimes.Construct();
-            int i = n * 10;
-            var primes = primeCalc.GetPrimesBelow(i);
-            while (primes.Count < n)
-            {
-                i *= 10;
-                primes = primeCalc.GetPrimesBelow(i);
-            }
-            return primes.ToList()[n - 1];
+            //When running multiple times using the primelist would be much faster
+            var primes = PrimeBuilder.BuildPrimesBelow(500000); //Number is a guess (1 in 50 numbers prime seems reasonable)
+            return primes.ElementAt(n-1);
         }
     }
 }

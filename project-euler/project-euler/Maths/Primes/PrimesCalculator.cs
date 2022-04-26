@@ -9,7 +9,7 @@ namespace project_euler.Maths.Primes
 
         static PrimesCalculator()
         {
-            Primes = ListOfPrimes.Construct().GetPrimesBelow(PrimeCheckLimit).ToHashSet();
+            Primes = ListOfPrimes.GetHashSetPrimes(PrimeCheckLimit);
         }
 
         public static PrimeFactorization FindPrimeFactors(int num)
@@ -19,8 +19,7 @@ namespace project_euler.Maths.Primes
             {
                 return primeFactors;
             }
-            var primeGenerator = ListOfPrimes.Construct();
-            var primes = primeGenerator.GetPrimesBelow(num + 1);
+            var primes = ListOfPrimes.GetPrimesBelow(num + 1);
 
             var rest = num;
             foreach (var prime in primes)

@@ -13,8 +13,7 @@ namespace project_euler.Problems.ConcreteProblems
 
         private static long FindSmallestMultiple(int input)
         {
-            var primes = ListOfPrimes.Construct();
-            var _ = primes.GetPrimesBelow(input + 1);
+            ListOfPrimes.BuildUpTo(input); //Make sure we have the primes up to the input so we don't regen for each iteration
             var smallestMultiple = new PrimeFactorization();
             for (int i = 2; i <= input; i++)
             {

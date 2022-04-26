@@ -2,27 +2,42 @@
 {
     internal sealed class ListOfPrimes
     {
-        private static ListOfPrimes? instance;
-        private SortedSet<int> knownPrimes = new();
-        private int maxChecked;
+        private static SortedSet<int> knownPrimes = new();
+        private static HashSet<int> knownPrimesAsHash = new();
+        private static int maxChecked;
 
-        private ListOfPrimes() { }
-
-        internal static ListOfPrimes Construct()
-        {
-            return instance ??= new ListOfPrimes();
-        }
-
-        public SortedSet<int> GetPrimesBelow(int num)
+        public static SortedSet<int> GetPrimesBelow(int num)
         {
             if (num <= 2) { return new(); }
             if (maxChecked >= num)
             {
                 return knownPrimes.GetViewBetween(2, num - 1);
             }
-            knownPrimes = new SortedSet<int>(PrimeBuilder.BuildPrimesBelow(num));
-            maxChecked = num;
+            BuildUpTo(num);
             return knownPrimes;
+        }
+
+        public static HashSet<int> GetHashSetPrimes(int minimumLimit)
+        {
+            if (minimumLimit <= 2) { return new(); }
+            if (maxChecked >= minimumLimit)
+            {
+                return knownPrimesAsHash;
+            }
+            BuildUpTo(minimumLimit);
+            return knownPrimesAsHash;
+        }
+
+        public static void BuildUpTo(int num)
+        {
+            if (maxChecked >= num)
+            {
+                return;
+            }
+            var primes = PrimeBuilder.BuildPrimesBelow(num+1);
+            knownPrimes = new SortedSet<int>(primes);
+            knownPrimesAsHash = new HashSet<int>(primes);
+            maxChecked = num;
         }
     }
 }

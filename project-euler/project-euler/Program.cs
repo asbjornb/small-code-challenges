@@ -1,16 +1,13 @@
 ﻿// See https://aka.ms/new-console-template for more information
-using project_euler;
+using project_euler.Problems.ConcreteProblems;
 using System.Diagnostics;
 
-var solvers = Resolver.GetAllSolvers();
+var solver = new Problem058();
 var solutionWatch = Stopwatch.StartNew();
-Stopwatch individualWatch;
-foreach (var solver in solvers)
+Console.WriteLine($"Solving {solver.Name}");
+for (int i = 0; i < 1; i++)
 {
-    Console.WriteLine($"Solving {solver.Name}");
-    individualWatch = Stopwatch.StartNew();
-    Console.WriteLine(solver.Solve());
-    Console.WriteLine($"Solution took {individualWatch.ElapsedMilliseconds} milliseconds");
+    solver.Solve();
 }
 solutionWatch.Stop();
 Console.WriteLine($"All solvers combined took {solutionWatch.ElapsedMilliseconds} milliseconds");

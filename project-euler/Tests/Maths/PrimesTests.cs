@@ -17,9 +17,7 @@ namespace Tests.Maths
         [TestCase(20, new int[] { 2, 3, 5, 7, 11, 13, 17, 19 })]
         public void ShouldGeneratePrimesBelowForExamples(int input, int[] expectedResult)
         {
-            var sut = ListOfPrimes.Construct();
-
-            var primes = sut.GetPrimesBelow(input).ToList();
+            var primes = ListOfPrimes.GetPrimesBelow(input).ToList();
 
             primes.ShouldBe(expectedResult.ToList());
         }
@@ -27,10 +25,8 @@ namespace Tests.Maths
         [Test]
         public void ShouldGeneratePrimesBelow20WhenCalledTwice()
         {
-            var sut = ListOfPrimes.Construct();
-
-            var _ = sut.GetPrimesBelow(10);
-            var primes = sut.GetPrimesBelow(20);
+            var _ = ListOfPrimes.GetPrimesBelow(10);
+            var primes = ListOfPrimes.GetPrimesBelow(20);
 
             primes.ShouldBe((new int[] { 2, 3, 5, 7, 11, 13, 17, 19 }).ToList());
         }
