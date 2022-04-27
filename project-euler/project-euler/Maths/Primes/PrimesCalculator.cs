@@ -19,10 +19,15 @@ namespace project_euler.Maths.Primes
             {
                 return primeFactors;
             }
-            var primes = ListOfPrimes.GetPrimesBelow((int)Math.Sqrt(num) + 1);
+            if (Primes.Contains(num))
+            {
+                primeFactors.AddFactor(num);
+                return primeFactors;
+            }
+            var primesToCheck = ListOfPrimes.GetPrimesBelow((int)Math.Sqrt(num) + 1);
 
             var rest = num;
-            foreach (var prime in primes)
+            foreach (var prime in primesToCheck)
             {
                 if (rest == 1 || rest < prime)
                 {
