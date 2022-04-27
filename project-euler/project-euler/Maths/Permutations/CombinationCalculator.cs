@@ -23,17 +23,20 @@
             {
                 output.Add(first);
             }
-            var indexDict = new Dictionary<T, int>();
-            for (int i = 0; i < input.Count; i++)
+            var nextItemDict = new Dictionary<T, T>(length)
             {
-                indexDict.Add(input[i], i);
+                { input[^1], input[0] }
+            };
+            for (int i = 0; i < input.Count-1; i++)
+            {
+                nextItemDict.Add(input[i], input[i+1]);
             }
 
             while (true)
             {
                 yield return output;
                 var outputIndex = length - 1;
-                var inputIndex = indexDict[output[outputIndex]];
+                var inputIndex = 0;
                 while (inputIndex < input.Count - 1)
                 {
                     inputIndex++;
@@ -49,8 +52,7 @@
                         yield break;
                     }
                 } while (output[outputIndex].Equals(last));
-                var inputIndex2 = indexDict[output[outputIndex]];
-                output[outputIndex] = input[inputIndex2+1];
+                output[outputIndex] = nextItemDict[output[outputIndex]];
             }
         }
     }

@@ -40,7 +40,7 @@ namespace Tests.Maths
         }
 
         [Test]
-        public void DangerPermutationsShouldPerform()
+        public void DangerCombinationsShouldPerform()
         {
             var allowedTime = TimeSpan.FromMilliseconds(500);
             var listToTest = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
