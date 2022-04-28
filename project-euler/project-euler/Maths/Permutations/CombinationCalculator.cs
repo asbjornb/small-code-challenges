@@ -23,7 +23,7 @@
             {
                 output.Add(first);
             }
-            var nextItemDict = new Dictionary<T, T>(length)
+            var nextItemDict = new Dictionary<T, T>(input.Count)
             {
                 { input[^1], input[0] }
             };
@@ -36,11 +36,9 @@
             {
                 yield return output;
                 var outputIndex = length - 1;
-                var inputIndex = 0;
-                while (inputIndex < input.Count - 1)
+                for (int i = 1; i < input.Count; i++)
                 {
-                    inputIndex++;
-                    output[outputIndex] = input[inputIndex];
+                    output[outputIndex] = input[i];
                     yield return output;
                 }
                 do
