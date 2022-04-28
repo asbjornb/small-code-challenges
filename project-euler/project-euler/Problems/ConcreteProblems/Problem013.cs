@@ -15,8 +15,8 @@
                 var addend = double.Parse(s);
                 sum += addend;
             }
-            var test = sum.ToString().Replace(",", "");
-            return test[0..10];
+            var asString = sum.ToString().Replace(",", "");
+            return asString[..10];
         }
 
         private readonly string[] input = {"37107287533902102798797998220837590246510135740250",

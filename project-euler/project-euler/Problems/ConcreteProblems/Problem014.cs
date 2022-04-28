@@ -40,7 +40,7 @@
             }
             else
             {
-                return known[num] = GetIterations(3 * num + 1) + 1;
+                return known[num] = GetIterations((3 * num) + 1) + 1;
             }
         }
     }
