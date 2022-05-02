@@ -16,10 +16,11 @@ namespace project_euler.Problems.ConcreteProblems
             // Why are there only 11? First and last digit must be prime and last can't be 2 or 5 if num>100
             // So last digit must be 3 og 7 for p>100
             // Same with first 2 and last 2 so last two must be 37, 
-            // Each 
+            // Proof might be by looking at left-truncateable and right-truncateable primes separately
+            // Then each one can only be created by adding a single digit to an existing
+            // When no more can be made check the overlap
             var sum = 0;
             var count = 0;
-            //loop to 1000 instead and generate palindromes as p=i+reverse(i) and p=i+reverse(i).Skip(1)?
             foreach (var prime in ListOfPrimes.GetPrimesBelow(1000000))
             {
                 if (prime < 10)
@@ -33,10 +34,10 @@ namespace project_euler.Problems.ConcreteProblems
                     sum += prime;
                     Console.WriteLine(prime);
                 }
-            }
-            if(count != 11)
-            {
-                throw new Exception();
+                if (count == 11)
+                {
+                    break;
+                }
             }
             return sum;
         }
