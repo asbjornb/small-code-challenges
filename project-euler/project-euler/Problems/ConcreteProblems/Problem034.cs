@@ -4,10 +4,10 @@
     {
         public string Solve()
         {
-            return FindDigitCancellingFractions().ToString();
+            return SumCuriousNumbers().ToString();
         }
 
-        private static int FindDigitCancellingFractions()
+        private static int SumCuriousNumbers()
         {
             //let f(x) be sum of digits of x!
             //2540160=9!*7 so upper bounds f(x)=x. For any 7 digit number d0..d6 d0<2 since f(2999999)=6*9!+2=2177282 and f(2199999)=5*9!+2=1814402
