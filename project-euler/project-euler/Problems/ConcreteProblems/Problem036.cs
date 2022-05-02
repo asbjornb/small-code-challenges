@@ -14,18 +14,17 @@
             for (int i = 1; i < 1000; i++)
             {
                 var numBase10 = Convert.ToString(i, 10);
-                string test = new string(numBase10.Reverse().ToArray());
-                string palindromeString1 = (numBase10 + new string(numBase10.Reverse().ToArray()));
+                string palindromeString1 = numBase10 + string.Concat(numBase10.Reverse());
                 var palindromeNum1 = Convert.ToInt32(palindromeString1, 10);
                 var possiblePalindrome1 = Convert.ToString(palindromeNum1, 2);
-                string palindromeString2 = (numBase10 + new string(numBase10.Reverse().Skip(1).ToArray()));
+                string palindromeString2 = numBase10 + string.Concat(numBase10.Reverse().Skip(1));
                 var palindromeNum2 = Convert.ToInt32(palindromeString2, 10);
                 var possiblePalindrome2 = Convert.ToString(palindromeNum2, 2);
-                if (possiblePalindrome1.Select(x=>x).SequenceEqual(possiblePalindrome1.Reverse()))
+                if (possiblePalindrome1.SequenceEqual(possiblePalindrome1.Reverse()))
                 {
                     sum += palindromeNum1;
                 }
-                if (possiblePalindrome2.Select(x => x).SequenceEqual(possiblePalindrome2.Reverse()))
+                if (possiblePalindrome2.SequenceEqual(possiblePalindrome2.Reverse()))
                 {
                     sum += palindromeNum2;
                 }
