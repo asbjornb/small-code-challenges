@@ -28,10 +28,12 @@
             return sum;
         }
 
-        private static Dictionary<int,int> CreateFactorials()
+        private static int[] CreateFactorials()
         {
             var factorial=1;
-            var dict = new Dictionary<int, int> { { 0, 1 }, { 1, 1 } };
+            var dict = new int[10];
+            dict[0] = 1;
+            dict[1] = 1;
             for (int i = 2; i < 10; i++)
             {
                 factorial *= i;
@@ -40,16 +42,15 @@
             return dict;
         }
 
-        private static bool CheckDigitFactorialSum(int num, Dictionary<int, int> factorials)
+        private static bool CheckDigitFactorialSum(int num, int[] factorials)
         {
             var sum = 0;
             var remainder = num;
-            var start = (int)Math.Pow(10,(int)Math.Log10(num));
-            for (int i = start; i >= 1; i /= 10)
+            while(remainder>0)
             {
-                var digit = remainder / i;
+                var digit = remainder % 10;
                 sum += factorials[digit];
-                remainder -= digit * i;
+                remainder /= 10;
             }
             return sum == num;
         }
