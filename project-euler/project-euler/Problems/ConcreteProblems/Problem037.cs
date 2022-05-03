@@ -27,12 +27,10 @@ namespace project_euler.Problems.ConcreteProblems
                 {
                     continue;
                 }
-                var digits = Digits.GetDigits(prime);
-                if (IsTruncatablePrime(digits))
+                if (IsTruncatablePrime(prime))
                 {
                     count++;
                     sum += prime;
-                    Console.WriteLine(prime);
                 }
                 if (count == 11)
                 {
@@ -42,20 +40,20 @@ namespace project_euler.Problems.ConcreteProblems
             return sum;
         }
 
-        private static bool IsTruncatablePrime(List<int> digits)
+        private static bool IsTruncatablePrime(int prime)
         {
-            for (int i = 1; i < digits.Count; i++)
+            var remainder = prime / 10;
+            while (remainder > 0)
             {
-                var num = Digits.ToNum(digits.GetRange(i, digits.Count - i));
-                if (!PrimesCalculator.IsPrime(num))
+                if (!PrimesCalculator.IsPrime(remainder))
                 {
                     return false;
                 }
+                remainder /= 10;
             }
-            for (int i = digits.Count-1; i > 0; i--)
+            for (int i = 10; i < prime; i*=10)
             {
-                var num = Digits.ToNum(digits.GetRange(0, i));
-                if (!PrimesCalculator.IsPrime(num))
+                if (!PrimesCalculator.IsPrime(prime % i))
                 {
                     return false;
                 }
