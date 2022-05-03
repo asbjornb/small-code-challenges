@@ -1,5 +1,4 @@
-﻿using project_euler.Maths.Permutations;
-using project_euler.Maths.Primes;
+﻿using project_euler.Maths.Primes;
 using project_euler.Maths.Primes.Generation;
 using project_euler.Util;
 
@@ -44,7 +43,7 @@ namespace project_euler.Problems.ConcreteProblems
             IEnumerable<int> next = digits;
             for (int i = 0; i < digits.Count-1; i++)
             {
-                next = next.Skip(1).Concat(new List<int> { digits[0] });
+                next = next.Skip(1).Concat(next.Take(1));
                 yield return next;
             }
         }
