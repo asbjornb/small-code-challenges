@@ -4,45 +4,26 @@
     {
         public string Solve()
         {
-            var result = FindLargestFactor(600851475143).ToString();
-            return result ?? "No solution found";
+            return FindLargestFactor(600851475143).ToString();
         }
 
-        private static int? FindLargestFactor(long number)
+        private static int FindLargestFactor(long number)
         {
             int largestFactor = 0;
             var rest = number;
-            while (true)
+            for (var current = 2; rest > 1; current++)
             {
-                var next = FindSmallestFactor(rest, largestFactor);
-                if (next is null)
+                while (rest % current == 0)
                 {
-                    return largestFactor;
+                    rest /= current;
+                    largestFactor = current;
                 }
-                largestFactor = next.Value;
-                rest = number / largestFactor;
-            }
-        }
-
-        private static int? FindSmallestFactor(long number, int startFrom)
-        {
-            if (startFrom < 2)
-            {
-                startFrom = 2;
-            }
-            for (int divisor = startFrom; divisor * divisor <= number; divisor++)
-            {
-                if (IsDivisible(number, divisor))
+                if (current > 2) 
                 {
-                    return divisor;
+                    current++; //After 2 is checked, we can skip even numbers
                 }
             }
-            return null;
-        }
-
-        private static bool IsDivisible(long num, int divisor)
-        {
-            return num % divisor == 0;
+            return largestFactor;
         }
     }
 }
