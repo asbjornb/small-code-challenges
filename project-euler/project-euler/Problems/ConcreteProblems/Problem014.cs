@@ -2,7 +2,7 @@
 {
     internal class Problem014 : BaseProblem, IProblem
     {
-        private static readonly Dictionary<long, int> known = new() { [1] = 1 };
+        private static readonly Dictionary<long, int> known = new(500000) { [1] = 1 };
 
         public string Solve()
         {
@@ -11,7 +11,7 @@
 
         //This version is actually slower than previous imperial version
         //I think it's much nicer and more intuitive so keeping it for now
-        private static long LongestCollatzBelow(int limit)
+        private static int LongestCollatzBelow(int limit)
         {
             var maxIterations = 0;
             var result = 0;
@@ -40,7 +40,8 @@
             }
             else
             {
-                return known[num] = GetIterations((3 * num) + 1) + 1;
+                //Since num is odd, so is 3*num+1, so we can always divide by 2 and take 2 steps at once
+                return known[num] = GetIterations(((3 * num) + 1) / 2) + 2;
             }
         }
     }
