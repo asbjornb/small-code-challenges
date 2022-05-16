@@ -6,8 +6,9 @@ namespace project_euler.Problems.ConcreteProblems
     {
         public string Solve()
         {
-            var abundantNumbers = GetAbundantBelow(28123 - 11);
-            var sums = GetAbundantSums(abundantNumbers);
+            const int limit = 28123;
+            var abundantNumbers = GetAbundantBelow(limit-11); //Since 12 is the smallest abundant, sums below limit can 
+            var sums = GetAbundantSumsBelow(abundantNumbers, limit);
             return SumNonAbundantSums(28123, sums).ToString();
         }
 
@@ -37,14 +38,19 @@ namespace project_euler.Problems.ConcreteProblems
             return result;
         }
 
-        private static HashSet<int> GetAbundantSums(List<int> abundantNumbers)
+        private static HashSet<int> GetAbundantSumsBelow(List<int> abundantNumbers, int limit)
         {
             var sums = new HashSet<int>();
             for (var i = 0; i < abundantNumbers.Count; i++)
             {
                 for (var j = i; j < abundantNumbers.Count; j++)
                 {
-                    sums.Add(abundantNumbers[i] + abundantNumbers[j]);
+                    var sum = abundantNumbers[i] + abundantNumbers[j];
+                    if (sum > limit)
+                    {
+                        break;
+                    }
+                    sums.Add(sum);
                 }
             }
             return sums;
