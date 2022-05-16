@@ -1,4 +1,6 @@
-﻿namespace project_euler.Problems.ConcreteProblems
+﻿using System.Globalization;
+
+namespace project_euler.Problems.ConcreteProblems
 {
     internal class Problem013 : BaseProblem, IProblem
     {
@@ -15,7 +17,7 @@
                 var addend = double.Parse(s);
                 sum += addend;
             }
-            var asString = sum.ToString().Replace(",", "");
+            var asString = sum.ToString().Replace(CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator, "");
             return asString[..10];
         }
 
