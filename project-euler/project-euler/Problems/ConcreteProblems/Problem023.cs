@@ -1,4 +1,5 @@
 ﻿using project_euler.Maths.NumberTheory;
+using System.Diagnostics;
 
 namespace project_euler.Problems.ConcreteProblems
 {
@@ -7,17 +8,18 @@ namespace project_euler.Problems.ConcreteProblems
         public string Solve()
         {
             const int limit = 28123;
-            var abundantNumbers = GetAbundantBelow(limit-11); //Since 12 is the smallest abundant, sums below limit can 
+            var abundantNumbers = GetAbundantBelow(limit-11);
             var sums = GetAbundantSumsBelow(abundantNumbers, limit);
             return SumNonAbundantSums(28123, sums).ToString();
         }
 
         private static List<int> GetAbundantBelow(int limit)
         {
+            var divisorsums = NumberTheoryCalculator.ProperDivisorSumsBelow(limit);
             var result = new List<int>();
             for(int i = 12; i < limit; i++)
             {
-                if (NumberTheoryCalculator.ProperDivisorSum(i) > i)
+                if (divisorsums[i] > i)
                 {
                     result.Add(i);
                 }

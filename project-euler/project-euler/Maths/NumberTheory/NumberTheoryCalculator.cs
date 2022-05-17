@@ -18,6 +18,19 @@ namespace project_euler.Maths.NumberTheory
             return result;
         }
 
+        public static int[] ProperDivisorSumsBelow(int limit)
+        {
+            var result = new int[limit];
+            for (var i = 1; i < limit; i++)
+            {
+                for (var j = 2*i; j < limit; j+=i) //For full divisor sum just start at i instead of 2 * i
+                {
+                    result[j] += i; //For each multiple (j) of i, i is a divisor so add i to the divisor sum
+                }
+            }
+            return result;
+        }
+
         public static int ProperDivisorSum(int num)
         {
             var result = 1;
