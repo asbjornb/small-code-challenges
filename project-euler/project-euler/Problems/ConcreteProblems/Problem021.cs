@@ -9,21 +9,19 @@ namespace project_euler.Problems.ConcreteProblems
             return FindAmicableNumbersBelow(10000).ToString();
         }
 
-        private static int FindAmicableNumbersBelow(int input)
+        private static int FindAmicableNumbersBelow(int limit)
         {
-            var divisorSums = new HashSet<(int,int)>(); //holds (num, DivisorSum(num)) tuples
-            for (int i = 1; i <= input; i++)
-            {
-                var divisorSum = NumberTheoryCalculator.ProperDivisorSum(i);
-                divisorSums.Add((i, divisorSum));
-            }
+            var divisorSums = NumberTheoryCalculator.ProperDivisorSumsBelow(limit+1);
 
             var pairs = 0;
-            foreach (var (num, ds) in divisorSums)
+            for (int a = 0; a < limit; a++)
             {
-                if(num!=ds && ds<=input && divisorSums.Contains((ds,num)))
+                var b = divisorSums[a]; // d(a) = b
+                if (a != b
+                    && b <= limit // a below limit from forloop condition
+                    && a == divisorSums[b]) // d(b) = a
                 {
-                    pairs += num;
+                    pairs += a;
                 }
             }
             return pairs;
