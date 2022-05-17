@@ -25,12 +25,12 @@ namespace project_euler.Problems.ConcreteProblems
             return result;
         }
 
-        private static int SumNonAbundantSums(int limit, HashSet<int> sums)
+        private static int SumNonAbundantSums(int limit, bool[] sums)
         {
             var result = 0;
             for (int i = 1; i < limit; i++)
             {
-                if(!sums.Contains(i))
+                if(!sums[i])
                 {
                     result += i;
                 }
@@ -38,9 +38,9 @@ namespace project_euler.Problems.ConcreteProblems
             return result;
         }
 
-        private static HashSet<int> GetAbundantSumsBelow(List<int> abundantNumbers, int limit)
+        private static bool[] GetAbundantSumsBelow(List<int> abundantNumbers, int limit)
         {
-            var sums = new HashSet<int>();
+            var sums = new bool[limit+1];
             for (var i = 0; i < abundantNumbers.Count; i++)
             {
                 for (var j = i; j < abundantNumbers.Count; j++)
@@ -50,7 +50,7 @@ namespace project_euler.Problems.ConcreteProblems
                     {
                         break;
                     }
-                    sums.Add(sum);
+                    sums[sum]=true;
                 }
             }
             return sums;
