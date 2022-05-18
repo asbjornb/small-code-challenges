@@ -2,7 +2,7 @@
 using project_euler.Maths.NumberTheory;
 using Shouldly;
 
-namespace Tests.Problem021Tests
+namespace Tests.Maths
 {
     [TestFixture]
     internal class NumberTheoryCalculatorTests
