@@ -1,3 +1,5 @@
+# Keep track of observed minimum (best buy spot) check if current sell spot beats previous best
+
 from typing import List
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:

@@ -1,3 +1,5 @@
+# Move to smaller or larger values to close in on result O(n) since indexes move once for each iteration and never cross (precondition gives us always one result)
+
 from operator import itemgetter
 from typing import List
 class Solution:
