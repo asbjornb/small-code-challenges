@@ -1,18 +1,13 @@
-# Greedy - find a locally optimal solution
+# Greedy - find a locally optimal solution. If previous best local solution > 0 then add it
 
 from typing import List
 class Solution:
     def maxSubArray(self, nums: List[int]) -> int:
-        # Preprocess
-        sums = [nums[0]]
         for i in range(1, len(nums)):
-            if sums[i-1] > 0: # If a previous sub-array has positive sum we can add it to the current number for a better one
-                sums.append(sums[i-1]+nums[i])
-            else:
-                sums.append(nums[i])
-        # Return max
-        return max(sums)
+            if nums[i-1] > 0:
+                nums[i] = nums[i-1]+nums[i]
+        return max(nums)
 
 sol = Solution()
-print(sol.maxSubArray([-2,1,-3,4,-1,2,1,-5,4]))
-print(sol.maxSubArray([-2,-1]))
+print(sol.maxSubArray([-2,1,-3,4,-1,2,1,-5,4]), "should be 6")
+print(sol.maxSubArray([-2,-1]), "should be -1")
